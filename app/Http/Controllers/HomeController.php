@@ -25,4 +25,17 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function daftarUser()
+    {
+        return view('daftar-user');
+    }
+    public function daftarInstansi()
+    {
+        return view('daftar-instansi');
+    }
+    public function daftarAV()
+    {
+        return view('daftar-arsip');
+    }
+
 }
