@@ -11,6 +11,7 @@ class ArsipVital extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'instansi_id',
         'jenis_arsip',
         'tingkat_perkembangan',
         'kurun_waktu',
@@ -21,5 +22,11 @@ class ArsipVital extends Model
         'lokasi_simpan',
         'file',
         'keterangan',
+        
     ];
+
+    public function instansi()
+    {
+        return $this->belongsTo(Instansi::class);
+    }
 }
