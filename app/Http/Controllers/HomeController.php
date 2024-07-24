@@ -38,4 +38,17 @@ class HomeController extends Controller
         
         return view('home', compact('user', 'arsips', 'userCount', 'instansiCount', 'arsipvitalCount'));
     }
+    public function daftarUser()
+    {
+        return view('daftar-user');
+    }
+    public function daftarInstansi()
+    {
+        return view('daftar-instansi');
+    }
+    public function daftarAV()
+    {
+        return view('daftar-arsip');
+    }
+
 }
