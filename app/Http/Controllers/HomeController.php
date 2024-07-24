@@ -26,17 +26,27 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    {   
+        // if else statement to check if user is super admin or not
+        if (Auth::user()->role == 'spadmin') {
+            $users = User::all();
+            $instansis = Instansi::all();
+            $arsips = ArsipVital::all();
+
+            // Count total users, instansis, and arsip vitals for super admin
+            $userCount = User::count();
+            $instansiCount = Instansi::count();
+            $arsipvitalCount = ArsipVital::count();
+
+            return view('home', compact('users', 'instansis', 'arsips', 'userCount', 'instansiCount', 'arsipvitalCount'));
+        }
+
+        // if user is not super admin, show only their own data
         $user = Auth::user();
         $instansiId = $user->instansi_id;
         $arsips = ArsipVital::where('instansi_id', $instansiId)->get();
-
-        // Count total users, instansis, and arsip vitals
-        $userCount = User::count();
-        $instansiCount = Instansi::count();
-        $arsipvitalCount = ArsipVital::count();
         
-        return view('home', compact('user', 'arsips', 'userCount', 'instansiCount', 'arsipvitalCount'));
+        return view('home', compact('user', 'arsips'));
     }
     public function daftarUser()
     {
