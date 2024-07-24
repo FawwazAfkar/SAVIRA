@@ -7,6 +7,7 @@ use App\Models\Instansi;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -16,12 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create dummy instansi
+        // Create first instansi
         $instansi = Instansi::create([
             'nama_instansi' => 'Dinas Arsip dan Perpustakaan Daerah Kabupaten Banyumas',
         ]);
 
-        // Create users
+        // Create users with roles and instansi assigned
         $superAdmin = User::create([
             'name' => 'Super Admin',
             'email' => 'spadmin@example.com',
@@ -58,8 +59,27 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('User');
 
         // Create spatie permissions
+        $ManageAdmins = Permission::create(['name' => 'manageAdmins']);
+        $ManageUsers = Permission::create(['name' => 'manageUsers']);
+        $ManageInstansis = Permission::create(['name' => 'manageInstansis']);
+        $CreateArsips = Permission::create(['name' => 'createArsips']);
+        $EditArsips = Permission::create(['name' => 'editArsips']);
+        $DeleteArsips = Permission::create(['name' => 'deleteArsips']);
 
-        // Assign permisions to roles
+        // Assign permissions to roles
+        $superAdmin->givePermissionTo(
+            $ManageAdmins,
+            $ManageInstansis,
+            $CreateArsips,
+            $EditArsips,
+            $DeleteArsips
+        );
 
+        $admin->givePermissionTo(
+            $ManageUsers,
+            $CreateArsips,
+            $EditArsips,
+            $DeleteArsips
+        );
     }
 }
