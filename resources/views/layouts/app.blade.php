@@ -149,7 +149,7 @@
                 <div class="container">
                     <i class='bx bx-menu' ></i>
                     <x-nav-logo class="w-20 h-20" />
-                    <a class="navbar-brand m-1" href="{{ url('/') }}">
+                    <a class="navbar-brand m-1" href="{{ url('../home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
