@@ -41,24 +41,50 @@ class HomeController extends Controller
             return view('home', compact('users', 'instansis', 'arsips', 'userCount', 'instansiCount', 'arsipvitalCount'));
         }
 
-        // if user is not super admin, show only their own data
+        // if user is not super admin, show only their own instansi data
         $user = Auth::user();
         $instansiId = $user->instansi_id;
         $arsips = ArsipVital::where('instansi_id', $instansiId)->get();
         
         return view('home', compact('user', 'arsips'));
     }
+
     public function daftarUser()
-    {
-        return view('daftar-user');
+    {   
+        //if super admin, show all users
+        if (Auth::user()->role == 'spadmin') {
+            $users = User::all();
+            return view('daftar-user', compact('users'));
+        }
+        
+        // if just admin, show only users from their own instansi
+        $instansiId = Auth::user()->instansi_id;
+        $users = User::where('instansi_id', $instansiId)->get();
+
+        return view('daftar-user', compact('users'));
     }
+
     public function daftarInstansi()
     {
-        return view('daftar-instansi');
+        // only super admin has access to this page
+        $instansis = Instansi::all();
+
+        return view('daftar-instansi', compact('instansis'));
     }
+
     public function daftarAV()
     {
-        return view('daftar-arsip');
+        // if super admin, show all arsip vitals
+        if (Auth::user()->role == 'spadmin') {
+            $arsips = ArsipVital::all();
+            return view('daftar-av', compact('arsips'));
+        }
+
+        // if not super admin, show only arsip vitals from their own instansi
+        $instansiId = Auth::user()->instansi_id;
+        $arsips = ArsipVital::where('instansi_id', $instansiId)->get();
+
+        return view('daftar-av', compact('arsips'));
     }
 
 }
