@@ -1,4 +1,4 @@
-@extends('layouts.logres')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,6 @@
                     <x-app-logo class="w-20 h-20" /><br/>
                     <span class="text-xl font-bold text-gray-500">Welcome to SAVIRA</span>
                 </div>
-
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

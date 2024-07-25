@@ -77,14 +77,14 @@ class HomeController extends Controller
         // if super admin, show all arsip vitals
         if (Auth::user()->role == 'spadmin') {
             $arsips = ArsipVital::all();
-            return view('daftar-av', compact('arsips'));
+            return view('daftar-arsip', compact('arsips'));
         }
 
         // if not super admin, show only arsip vitals from their own instansi
         $instansiId = Auth::user()->instansi_id;
         $arsips = ArsipVital::where('instansi_id', $instansiId)->get();
 
-        return view('daftar-av', compact('arsips'));
+        return view('daftar-arsip', compact('arsips'));
     }
 
 }
