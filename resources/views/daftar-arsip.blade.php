@@ -8,7 +8,10 @@
             <div class="col-md-12 m-2 text-center">
                 <div class="d-flex justify-content-between">
                     <h2 class="text-xl font-semibold leading-tight">{{ __('DAFTAR ARSIP VITAL') }}</h2>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputArsip">Tambah Arsip</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputArsip">
+                        <i class='bx bxs-folder-plus'></i>
+                        <span>Tambah Arsip</span>
+                    </button>
                 </div>
             </div>
             <x-arsip.create />
