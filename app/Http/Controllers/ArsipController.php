@@ -25,15 +25,21 @@ class ArsipController extends Controller
         ]);
 
         // file handling
-        $file = $request->file('file');
-        $fileName = time() . '_' . $file->getClientOriginalName();
-        $file->storeAs('public/arsipvital', $fileName);
+        if($request->has('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/arsipvital', $fileName);
+        }else{
+            $fileName = null;
+        }
 
         // merge instansi_id with user's instansi_id and merge file name
-        $request->merge(['instansi_id' => auth()->user()->instansi_id]);
-        $request->merge(['file' => $fileName]);
-
-        ArsipVital::create($request->all());
+        $request->merge([
+            'instansi_id' => auth()->user()->instansi_id
+        ]);
+        $arsipVital = ArsipVital::create($request->all());
+        $arsipVital->file = $fileName;
+        $arsipVital->save();
 
         return redirect()->route('daftar-arsip')
             ->with('Berhasil', 'Arsip berhasil ditambahkan.');

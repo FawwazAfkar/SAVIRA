@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <div class="row g-0">
                     <div class="col-3 m-1 d-flex align-items-center justify-content-center">
-                        <embed src="{{ ($arsip->file) }}" type="application/pdf" class="img-fluid" style="height: 80%"></embed>
+                        <embed src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" class="img-fluid" style="height: 80%"></embed>
                     </div>
                     <div class="col">
                         <div class="row">
