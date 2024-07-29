@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -13,7 +14,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
             'role' => 'required|string|max:255',
             'instansi_id' => 'required|integer',
@@ -34,12 +35,13 @@ class UserController extends Controller
     // If super admin, can update admin and user
     public function update(Request $request, $id)
     {
+        Log::info($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|string|min:8',
             'role' => 'required|string|max:255',
             'instansi_id' => 'required|integer',
-            'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         $user = User::findOrFail($id);

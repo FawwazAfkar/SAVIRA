@@ -43,7 +43,7 @@
                             </td>
                         </tr>
                         <!-- Tempat Naruh Modal/Routes for Aksi -->
-                        <x-user.update :instansi="$instansis" :user="$user"/>
+                        <x-user.update :instansis="$instansis" :user="$user"/>
                         <x-user.delete :user="$user"/>
                     @endforeach
                 </tbody>

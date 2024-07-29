@@ -1,4 +1,4 @@
-@props(['instansi','user'])
+@props(['instansis','user'])
 <!-- Modal -->
 <div class="modal fade" id="updateUser{{ $user->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
@@ -26,17 +26,15 @@
               </div>
               <div class="form-floating mb-3 col-12">
                 <select id="role" name="role" class="form-select" required>
-                  <option value="{{ $user->role }}" selected disabled>{{ __($user->role) }}</option>
-                  <option value="admin">Admin</option>
-                  <option value="user">User</option>
+                  <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                  <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
                 </select>
                 <label for="role" class="form-label">{{ __('Role') }}</label>
               </div>
               <div class="form-floating mb-3 col-12">
                 <select id="instansi_id" name="instansi_id" class="form-select" required>
-                  <option value="{{ $user->instansi_id }}" selected disabled>{{ __($user->instansi->nama_instansi) }}</option>
-                  @foreach($instansi as $data)
-                    <option value="{{ $data->id }}">{{ $data->nama_instansi }}</option>
+                  @foreach($instansis as $instansi)
+                    <option value="{{ $instansi->id }}" {{ $user->instansi_id == $instansi->id ? 'selected' : '' }}>{{ $instansi->nama_instansi }}</option>
                   @endforeach
                 </select>
                 <label for="instansi" class="form-label">{{ __('Instansi / Unit Kerja') }}</label>
