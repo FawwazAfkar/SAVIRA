@@ -73,10 +73,13 @@ class ArsipController extends Controller
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('public/arsipvital', $fileName);
             $request->merge(['file' => $fileName]);
+            
         }
 
         $arsip = ArsipVital::find($id);
         $arsip->update($request->all());
+        $arsip->file = $fileName;
+        $arsip->save();
 
         return redirect()->route('daftar-arsip')
             ->with('Berhasil', 'Arsip berhasil diubah.');
