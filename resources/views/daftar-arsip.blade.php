@@ -50,8 +50,8 @@
                             <td class="d-flex gap-2 m-2 justify-content-center">
                                <!-- Button Aksi -->
                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
-                               <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip"><i class='bx bx-edit'></i></button>
-                               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArsip"><i class='bx bx-trash'></i></button>
+                               <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
+                               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArsip{{ $arsip->id }}"><i class='bx bx-trash'></i></button>
                             </td>
                         </tr>
                         <!-- Tempat Naruh Modal/Routes for Aksi -->
