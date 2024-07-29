@@ -33,7 +33,7 @@
                             <td>{{ $user->role }}</td>
                             <td>{{ $user->instansi->nama_instansi }}</td>
                             <td class="d-flex gap-2 justify-content-center">
-                               <!-- Button Aksi -->
+                                <!-- Button Aksi -->
                                 <a href="#" class="btn btn-primary"><i class='bx bx-info-circle'></i></a>
                                 <a href="#" class="btn btn-warning"><i class='bx bx-edit'></i></a>
                                 <a href="#" class="btn btn-danger"><i class='bx bx-trash'></i></a>
