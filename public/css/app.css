@@ -1,0 +1,10 @@
+.custom-container {
+    width: 100%;
+    max-width: 95%; /* Atur persentase sesuai kebutuhan */
+    margin: 0 auto; /* Center align the container */
+    padding: 0 15px;
+}
+
+body {
+    background-color: white;
+}

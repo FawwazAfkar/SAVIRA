@@ -36,10 +36,12 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>{{ $user->instansi->nama_instansi }}</td>
-                            <td class="d-flex gap-2 justify-content-center">
+                            <td>
                                 <!-- Button Aksi -->
+                                <div class="d-flex gap-2 justify-content-start">
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateUser{{ $user->id }}"><i class='bx bx-edit'></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser{{ $user->id }}"><i class='bx bx-trash'></i></button>
+                                </div>
                             </td>
                         </tr>
                         <!-- Tempat Naruh Modal/Routes for Aksi -->

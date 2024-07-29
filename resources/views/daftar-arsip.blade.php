@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="container bg-white p-4 rounded">
+<div class="custom-container bg-white p-4 rounded">
     <div>
         <div class="row justify-content-center">
             <div class="col-md-12 m-2 text-center">
@@ -47,11 +47,13 @@
                             <td>{{ $arsip->lokasi_simpan }}</td>
                             <td>{{ $arsip->keterangan }}</td>
                             <td>{{ $arsip->instansi->nama_instansi }}</td>
-                            <td class="d-flex gap-2 m-2 justify-content-center">
+                            <td>
                                <!-- Button Aksi -->
-                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
-                               <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
-                               <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArsip{{ $arsip->id }}"><i class='bx bx-trash'></i></button>
+                               <div class="d-flex gap-2 justify-content-between">
+                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
+                                   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
+                                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArsip{{ $arsip->id }}"><i class='bx bx-trash'></i></button>
+                               </div>
                             </td>
                         </tr>
                         <!-- Tempat Naruh Modal/Routes for Aksi -->

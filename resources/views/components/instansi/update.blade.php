@@ -1,10 +1,10 @@
 @props(['instansi'])
-<!-- Update Modal -->
+<!-- Update Modal <<<Instansi is the same as Unit Kerja>>> -->
 <div class="modal fade" id="updateInstansi{{ $instansi->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Update Instansi / Unit Kerja</h1>
+                <h1 class="modal-title fs-5">Update Unit Kerja</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -15,7 +15,7 @@
                         <div class="col-md-6">
                             <div class="form-floating mb-3 col-12">
                                 <input id="nama_instansi" name="nama_instansi" type="text" class="form-control" placeholder="" value="{{ $instansi->nama_instansi }}" required>
-                                <label for="nama_instansi" class="form-label">{{ __('Nama Instansi') }}</label>
+                                <label for="nama_instansi" class="form-label">{{ __('Nama Unit Kerja') }}</label>
                             </div>
                         </div>
                     </div>

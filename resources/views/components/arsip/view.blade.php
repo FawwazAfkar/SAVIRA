@@ -15,7 +15,8 @@
                         <iframe src="{{ asset('storage/arsipvital/'.$arsip->file) }}" id="viewer" class="" style="height: 30rem;"></iframe>
                         {{-- <div style="overflow: hidden; width: 80%; height: 100%;">
                             <embed src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" class="img-fluid" style="height: 100%; width: 100%;">
-                        </div> --}}
+                        </div> 
+                        --}}
                     </div>
                     <div class="col-4">
                         <div class="row">
