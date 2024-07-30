@@ -59,7 +59,6 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('User');
 
         // Create spatie permissions
-        $ManageAdmins = Permission::create(['name' => 'manageAdmins']);
         $ManageUsers = Permission::create(['name' => 'manageUsers']);
         $ManageInstansis = Permission::create(['name' => 'manageInstansis']);
         $CreateArsips = Permission::create(['name' => 'createArsips']);
@@ -68,7 +67,7 @@ class DatabaseSeeder extends Seeder
 
         // Assign permissions to roles
         $superAdmin->givePermissionTo(
-            $ManageAdmins,
+            $ManageUsers,
             $ManageInstansis,
             $CreateArsips,
             $EditArsips,

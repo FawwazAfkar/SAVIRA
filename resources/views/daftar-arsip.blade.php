@@ -8,13 +8,29 @@
             <div class="col-md-12 m-2 text-center">
                 <div class="d-flex justify-content-between">
                     <h2 class="text-xl font-semibold leading-tight">{{ __('DAFTAR ARSIP VITAL') }}</h2>
+                    @can('createArsips')
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputArsip">
                         <i class='bx bxs-folder-plus'></i>
                         <span>Tambah Arsip</span>
                     </button>
+                    @endcan
                 </div>
             </div>
             <x-arsip.create />
+
+            {{-- call alert --}}
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+            
             <table id="data" class="table table-responsive table-bordered table-striped display">
                 <thead>
                     <tr>
@@ -48,12 +64,16 @@
                             <td>{{ $arsip->keterangan }}</td>
                             <td>{{ $arsip->instansi->nama_instansi }}</td>
                             <td>
-                               <!-- Button Aksi -->
-                               <div class="d-flex gap-2 justify-content-between">
-                                   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
-                                   <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
-                                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArsip{{ $arsip->id }}"><i class='bx bx-trash'></i></button>
-                               </div>
+                                <!-- Button Aksi -->
+                                <div class="d-flex gap-2 justify-content-between">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
+                                    @can('editArsips')
+                                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
+                                    @endcan
+                                    @can('deleteArsips')
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteArsip{{ $arsip->id }}"><i class='bx bx-trash'></i></button>
+                                    @endcan
+                                </div>
                             </td>
                         </tr>
                         <!-- Tempat Naruh Modal/Routes for Aksi -->

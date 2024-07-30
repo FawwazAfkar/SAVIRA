@@ -24,21 +24,36 @@
                 <input id="password" name="password" type="password" class="form-control" placeholder="">
                 <label for="password" class="form-label">{{ __('Password') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
-                <select id="role" name="role" class="form-select" required>
-                  <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                  <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
-                </select>
-                <label for="role" class="form-label">{{ __('Role') }}</label>
-              </div>
-              <div class="form-floating mb-3 col-12">
-                <select id="instansi_id" name="instansi_id" class="form-select" required>
-                  @foreach($instansis as $instansi)
-                    <option value="{{ $instansi->id }}" {{ $user->instansi_id == $instansi->id ? 'selected' : '' }}>{{ $instansi->nama_instansi }}</option>
-                  @endforeach
-                </select>
-                <label for="instansi" class="form-label">{{ __('Instansi / Unit Kerja') }}</label>
-              </div>
+              @if(auth()->user()->hasRole('SuperAdmin'))
+                <div class="form-floating mb-3 col-12">
+                  <select id="role" name="role" class="form-select" required>
+                    <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                  </select>
+                  <label for="role" class="form-label">{{ __('Role') }}</label>
+                </div>
+                <div class="form-floating mb-3 col-12">
+                  <select id="instansi_id" name="instansi_id" class="form-select" required>
+                    @foreach($instansis as $instansi)
+                      <option value="{{ $instansi->id }}" {{ $user->instansi_id == $instansi->id ? 'selected' : '' }}>{{ $instansi->nama_instansi }}</option>
+                    @endforeach
+                  </select>
+                  <label for="instansi" class="form-label">{{ __('Instansi / Unit Kerja') }}</label>
+                </div>
+              @elseif(auth()->user()->hasRole('Admin'))
+                <div class="form-floating mb-3 col-12">
+                  <select id="role" name="role" class="form-select" required>
+                    <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                  </select>
+                  <label for="role" class="form-label">{{ __('Role') }}</label>
+                </div>
+                <div class="form-floating mb-3 col-12">
+                  <select id="instansi_id" name="instansi_id" class="form-select" required>
+                    <option value="{{ $user->instansi_id }}" selected>{{ $user->instansi->nama_instansi }}</option>
+                  </select>
+                  <label for="instansi" class="form-label">{{ __('Instansi / Unit Kerja') }}</label>
+                </div>
+              @endif
             </div>
           </div>
           <div class="modal-footer">

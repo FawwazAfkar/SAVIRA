@@ -23,6 +23,7 @@
         </ul>
       </li>
 
+      @can('manageUsers')
       <li>
           <a href="{{ route('daftar-user') }}">
             <i class='bx bxs-user-rectangle' ></i>
@@ -32,7 +33,9 @@
             <li><a class="link_name" href="{{ route('daftar-user') }}">Daftar User</a></li>
           </ul>
       </li>
+      @endcan
 
+      @can('manageInstansis')
       <li>
         <a href="{{ route('daftar-instansi') }}">
           <i class='bx bx-buildings' ></i>
@@ -42,7 +45,9 @@
           <li><a class="link_name" href="{{ route('daftar-instansi') }}">Daftar Instansi</a></li>
         </ul>
       </li>
+      @endcan
       
+
       <li>
           <a href="{{ route('daftar-arsip') }}">
             <i class='bx bx-archive' ></i>

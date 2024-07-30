@@ -17,7 +17,7 @@ class InstansiController extends Controller
         Instansi::create($request->all());
 
         return redirect()->route('daftar-instansi')
-            ->with('Berhasil', 'Instansi/Unit Kerja berhasil ditambahkan.');
+            ->with('success', 'Instansi/Unit Kerja berhasil ditambahkan.');
     }
 
     // update instansi by id
@@ -31,7 +31,7 @@ class InstansiController extends Controller
         $instansi->update($request->all());
 
         return redirect()->route('daftar-instansi')
-            ->with('Berhasil', 'Instansi/Unit Kerja berhasil diubah.');
+            ->with('success', 'Instansi/Unit Kerja berhasil diubah.');
     }
 
     // delete instansi by id
@@ -40,6 +40,6 @@ class InstansiController extends Controller
         Instansi::destroy($id);
 
         return redirect()->route('daftar-instansi')
-            ->with('Berhasil', 'Instansi/Unit Kerja berhasil dihapus.');
+            ->with('success', 'Instansi/Unit Kerja berhasil dihapus.');
     }
 }

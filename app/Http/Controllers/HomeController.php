@@ -67,7 +67,7 @@ class HomeController extends Controller
         
         // if just admin, show only users from their own instansi
         $instansiId = Auth::user()->instansi_id;
-        $users = User::where('instansi_id', $instansiId)->get();
+        $users = User::where('instansi_id', $instansiId)->where('role','user')->get();
         $instansis = Instansi::where('id', $instansiId)->get();
         return view('daftar-user', compact('users','instansis'));
     }

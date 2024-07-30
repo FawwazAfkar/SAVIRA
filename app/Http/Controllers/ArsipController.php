@@ -42,7 +42,7 @@ class ArsipController extends Controller
         $arsipVital->save();
 
         return redirect()->route('daftar-arsip')
-            ->with('Berhasil', 'Arsip berhasil ditambahkan.');
+            ->with('success', 'Arsip berhasil ditambahkan.');
     }
 
     // update arsip by id
@@ -81,7 +81,7 @@ class ArsipController extends Controller
         $arsip->save();
 
         return redirect()->route('daftar-arsip')
-            ->with('Berhasil', 'Arsip berhasil diubah.');
+            ->with('success', 'Arsip berhasil diubah.');
     }
 
     // delete arsip by id
@@ -94,6 +94,6 @@ class ArsipController extends Controller
         ArsipVital::destroy($id);
 
         return redirect()->route('daftar-arsip')
-            ->with('Berhasil', 'Arsip berhasil dihapus.');
+            ->with('success', 'Arsip berhasil dihapus.');
     }
 }
