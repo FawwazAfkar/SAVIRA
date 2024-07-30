@@ -61,22 +61,21 @@ class ArsipController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
+        $arsip = ArsipVital::find($id);
+
         // file handling if file is not null, delete the old file if exist on storage
         if ($request->file('file')) {
-            $arsip = ArsipVital::find($id);
-            $oldFile = $arsip->file;
-            if ($oldFile) {
-                Storage::delete('public/arsipvital/' . $oldFile);
+            if ($arsip->file) {
+                Storage::delete('public/arsipvital/' . $arsip->file);
             }
 
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/arsipvital', $fileName);
-            $request->merge(['file' => $fileName]);
-            
+            $file->storeAs('public/arsipvital', $fileName);            
+        } else {
+            $fileName = $arsip->file;
         }
 
-        $arsip = ArsipVital::find($id);
         $arsip->update($request->all());
         $arsip->file = $fileName;
         $arsip->save();
@@ -89,11 +88,9 @@ class ArsipController extends Controller
     public function destroy($id)
     {
         $arsip = ArsipVital::find($id);
-        $file = $arsip->file;
-        if ($file) {
-            Storage::delete('public/arsipvital/' . $file);
+        if ($arsip->file) {
+            Storage::delete('public/arsipvital/' . $arsip->file);
         }
-
         ArsipVital::destroy($id);
 
         return redirect()->route('daftar-arsip')
