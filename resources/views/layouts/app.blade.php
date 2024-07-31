@@ -26,7 +26,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="@if(Route::is('login')) login-page @endif">
     <div id="app">
         <!-- Permission for sidebar view -->
         @if (Auth::user())
@@ -37,7 +37,7 @@
         <section class="home-section">
         <div class="home-content">
             <!-- NavBar View Permission -->
-            @if (Auth::user()!=null)
+            @if (Auth::user())
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
               <i class='bx bx-menu'></i>  
               <div class="container">      
@@ -64,7 +64,7 @@
             </nav>
             @endif
             <!-- Main Content -->
-                <main class="py-4">
+                <main class="main-content">
                     @yield('content')
                 </main>
             </div>
