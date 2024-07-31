@@ -14,6 +14,70 @@
                     </button>
                 </div>
             </div>
+
+            {{-- DataTables --}}
+            <script>
+                $(document).ready(function() {
+                    $('#data').DataTable({
+                        dom: 'Bfrtip',
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                exportOptions: {
+                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                                }
+                            },
+                            {
+                                extend: 'csv',
+                                exportOptions: {
+                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                                }
+                            },
+                            {
+                                extend: 'excel',
+                                exportOptions: {
+                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                                }
+                            },
+                            {
+                                extend: 'print',
+                                exportOptions: {
+                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                                }
+                            },
+                            {
+                                extend: 'pdf',
+                                orientation: 'landscape',
+                                pageSize: 'A4',
+                                exportOptions: {
+                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                                },
+                                customize: function (doc) {
+                                    doc.defaultStyle.fontSize = 8; // Change the default font size for the table content
+                                    doc.styles.tableHeader.fontSize = 10; // Change the font size for table headers
+                                    doc.content[1].table.widths = [
+                                        '5%',   // No
+                                        '40%',  // Jenis Arsip
+                                    ];
+
+                                     // Center align the "No" column
+                                    doc.content[1].table.body.forEach(function(row) {
+                                        row[0].alignment = 'center';
+                                    });
+
+                                }
+                            },
+                            {
+                                extend: 'colvis',
+                                text: 'Column Visibility',
+                                columns: ':not(:last-child)' // Exclude the last column (Aksi)
+                            }
+                        ],
+                        scrollX: true
+                    });
+                });
+            </script>
+            
             <x-instansi.create />
 
             {{-- call alert --}}
