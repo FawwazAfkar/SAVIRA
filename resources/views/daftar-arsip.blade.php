@@ -17,89 +17,10 @@
                 </div>
             </div>
 
-            {{-- DataTables --}}
-            <script>
-                $(document).ready(function() {
-                    $('#data').DataTable({
-                        dom: 'Bfrtip',
-                        buttons: [
-                            {
-                                extend: 'copy',
-                                exportOptions: {
-                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
-                                }
-                            },
-                            {
-                                extend: 'csv',
-                                exportOptions: {
-                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
-                                }
-                            },
-                            {
-                                extend: 'excel',
-                                exportOptions: {
-                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
-                                }
-                            },
-                            {
-                                extend: 'print',
-                                exportOptions: {
-                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
-                                }
-                            },
-                            {
-                                extend: 'pdf',
-                                orientation: 'landscape',
-                                pageSize: 'A4',
-                                exportOptions: {
-                                    columns: ':not(:last-child)' // Exclude the last column (Aksi)
-                                },
-                                customize: function (doc) {
-                                    doc.defaultStyle.fontSize = 8; // Change the default font size for the table content
-                                    doc.styles.tableHeader.fontSize = 10; // Change the font size for table headers
-                                    doc.content[1].table.widths = [
-                                        '3%',   // No
-                                        '20%',  // Jenis Arsip
-                                        '10%',  // Tingkat Perkembangan
-                                        '10%',  // Kurun Waktu
-                                        '5%',  // Media
-                                        '7%',  // Jumlah
-                                        '5%',  // Jangka Simpan
-                                        '10%',  // Metode Perlindungan
-                                        '5%',  // Lokasi Simpan
-                                        '13%',  // Keterangan
-                                        '12%'   // Instansi
-                                    ];
-
-                                     // Center align the "No" column
-                                    doc.content[1].table.body.forEach(function(row) {
-                                        row[0].alignment = 'center';
-                                        row[2].alignment = 'center';
-                                        row[3].alignment = 'center';
-                                        row[4].alignment = 'center';
-                                        row[5].alignment = 'center';
-                                        row[6].alignment = 'center';
-                                        row[7].alignment = 'center';
-                                        row[8].alignment = 'center';
-                                    });
-
-                                }
-                            },
-
-                            {
-                                extend: 'colvis',
-                                text: 'Column Visibility',
-                                columns: ':not(:last-child)' // Exclude the last column (Aksi)
-                            }
-                        ],
-                        scrollX: true
-                    });
-                });
-            </script>
-
+            {{-- Call Modal --}}
             <x-arsip.create />
 
-            {{-- call alert --}}
+            {{-- Call Alert --}}
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('success') }}
@@ -112,6 +33,7 @@
                 </div>
             @endif
             
+            {{-- Arsip Vital Table --}}
             <table id="data" class="table table-responsive table-bordered table-striped display">
                 <thead>
                     <tr>

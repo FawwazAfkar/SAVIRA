@@ -22,32 +22,21 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- DataTables -->
+    <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/b-print-3.1.0/sc-2.4.3/sp-2.3.1/datatables.min.css" rel="stylesheet">
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <!-- DataTables -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.colVis.min.js"></script>
-
-    <style>
+    {{-- <style>
         .dataTables_wrapper {
             width: 100%;
             margin: 0 auto;
         }
-        table.dataTable {
+        table.dataTable {   
             width: 100% !important;
         }
-    </style>
+    </style> --}}
 
 </head>
 
@@ -94,28 +83,16 @@
                 </main>
             </div>
         </section>
-    </div>
-    
-    <!-- Scripts -->
-    <script>
-        let arrow = document.querySelectorAll(".arrow");
-        for (var i = 0; i < arrow.length; i++) {
-          arrow[i].addEventListener("click", (e)=>{
-          let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
-          arrowParent.classList.toggle("showMenu");
-          });
-        }
-        let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", ()=>{
-        sidebar.classList.toggle("close");
-        });
-    </script>
+    </div>  
 
     <!-- Bootstrap Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- DataTables -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/b-print-3.1.0/sc-2.4.3/sp-2.3.1/datatables.min.js"></script>
 
 </body>
 </html>
