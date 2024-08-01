@@ -1,6 +1,6 @@
 @props(['arsip'])
 <!-- Update Modal -->
-<div class="modal fade" id="updateArsip{{ $arsip->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="updateArsip{{ $arsip->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" data-file-url="{{ asset('storage/arsipvital/' . $arsip->file) }}">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -52,11 +52,11 @@
                                 <label for="keterangan" class="form-label">{{ __('Keterangan') }}</label>
                             </div>
                             <div class="form-floating mb-3 col-12">
-                                <input class="form-control" type="file" id="file_update" name="file">
-                                <label for="file_update" class="form-label">{{ __('Upload Files (PDF)') }}</label>
+                                <input class="form-control" type="file" id="file_update_{{ $arsip->id }}" name="file" accept=".pdf">
+                                <label for="file_update_{{ $arsip->id }}" class="form-label">{{ __('Upload Files (PDF)') }}</label>
                             </div>
                             <div class="form-floating mb-3 col-12">
-                                <iframe id="viewer_update" class="form-control" style="height: 17.5rem;" src="{{ asset('storage/arsipvital/' . $arsip->file) }}"></iframe>
+                                <div id="pdf-viewer-update_{{ $arsip->id }}" class="form-control" style="height: 17.5rem; overflow:auto"></div>
                                 <label for="file_preview" class="form-label">{{ __('Preview File') }}</label>
                             </div>
                         </div>
@@ -70,24 +70,3 @@
         </div>
     </div>
 </div>
-
-<!-- JavaScript for File Preview -->
-<script>
-    document.getElementById('file_update').addEventListener('change', function(event) {
-        var file = event.target.files[0];
-        var reader = new FileReader();
-
-        reader.onload = function(e) {
-            var previewContainer = document.getElementById('viewer_update');
-            previewContainer.src = '';
-
-            if (file.type === 'application/pdf') {
-                previewContainer.src = e.target.result;
-            } else {
-                alert('File type not supported for preview.');
-            }
-        };
-
-        reader.readAsDataURL(file);
-    });
-</script>

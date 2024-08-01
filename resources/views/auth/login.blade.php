@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{-- Checking Session first --}}
+@if(Auth::user())
+    <script>
+        window.location = "{{ route('home') }}";
+    </script>
+
+@else
+{{-- Login Form --}}
 <div class="container d-flex align-items-center justify-content-center vh-100">
     <div class="row justify-content-center w-100">
         <div class="col-md-5">
@@ -83,4 +92,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection

@@ -50,11 +50,11 @@
                 <label for="keterangan" class="form-label">{{ __('Keterangan') }}</label>
               </div>
               <div class="form-floating mb-3 col-12">
-                <input class="form-control" type="file" id="file" name="file" required>
+                <input class="form-control" type="file" id="file" name="file" accept=".pdf" required>
                 <label for="file" class="form-label">{{ __('Upload Files (PDF)') }}</label>
               </div>
               <div class="form-floating mb-3 col-12">
-                <iframe id="viewer" class="form-control" style="height: 17.5rem;"></iframe>
+                <div id="pdf-viewer-input" class="form-control" style="height: 17.5rem; overflow:auto"></div>
                 <label for="file_preview" class="form-label">{{ __('Preview File') }}</label>
               </div>
             </div>
@@ -68,24 +68,55 @@
     </div>
   </div>
   
-  <!-- JavaScript for File Preview -->
+  {{-- <!-- JavaScript for File Preview (input) -->
   <script>
     document.getElementById('file').addEventListener('change', function(event) {
-      var file = event.target.files[0];
-      var reader = new FileReader();
-  
-      reader.onload = function(e) {
-        var previewContainer = document.getElementById('viewer');
-        previewContainer.src = '';
-  
-        if (file.type === 'application/pdf') {
-          previewContainer.src = e.target.result;
-        } else {
-          alert('File type not supported for preview.');
-        }
-      };
-  
-      reader.readAsDataURL(file);
-    });
-  </script>
+    var file = event.target.files[0];
+    var pdfViewer = document.getElementById('pdf-viewer-input');
+    pdfViewer.innerHTML = ''; // Clear previous content
+
+    if (file && file.type === 'application/pdf') {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            var loadingTask = pdfjsLib.getDocument({data: e.target.result});
+            
+            loadingTask.promise.then(function(pdf) {
+                // Fetch all pages instad of only one page
+                for (var i = 1; i <= pdf.numPages; i++) {
+                    pdf.getPage(i).then(function(page) {
+                        // var scale  max width of the div
+                        var scale = pdfViewer.clientWidth / page.getViewport({ scale: 1.1 }).width;
+                        var viewport = page.getViewport({ scale: scale });
+                        var canvas = document.createElement('canvas');
+                        var context = canvas.getContext('2d');
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+                        pdfViewer.appendChild(canvas);
+
+                        var renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+                        var renderTask = page.render(renderContext);
+                        renderTask.promise.then(function() {
+                            console.log('Page rendered');
+                        });
+                    });
+                }
+            }, function (reason) {
+                console.error(reason);
+            });
+        };
+
+        reader.readAsArrayBuffer(file);
+    } else {
+        Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Maaf, File yang diupload harus berformat PDF!',
+            });
+    }
+});
+  </script> --}}
     

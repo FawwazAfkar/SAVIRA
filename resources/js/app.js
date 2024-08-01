@@ -1,5 +1,6 @@
 import './bootstrap';
 import './datatables';
+import './pdf-previewer';
 
 
 // Sidebar Toggle Script

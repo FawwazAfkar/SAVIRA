@@ -34,7 +34,7 @@
             @endif
             
             {{-- Arsip Vital Table --}}
-            <table id="data" class="table table-responsive table-bordered table-striped display">
+            <table id="dataarsip" class="table table-responsive table-bordered table-striped display">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -47,7 +47,7 @@
                         <th>Metode Perlindungan</th>
                         <th>Lokasi Simpan</th>
                         <th>Keterangan</th>
-                        <th>Instansi</th>
+                        @hasrole('SuperAdmin')<th>Instansi</th>@endhasrole
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -65,7 +65,7 @@
                             <td>{{ $arsip->metode_perlindungan }}</td>
                             <td>{{ $arsip->lokasi_simpan }}</td>
                             <td>{{ $arsip->keterangan }}</td>
-                            <td>{{ $arsip->instansi->nama_instansi }}</td>
+                            @hasrole('SuperAdmin')<td>{{ $arsip->instansi->nama_instansi }}</td>@endhasrole
                             <td>
                                 <!-- Button Aksi -->
                                 <div class="d-flex gap-2 justify-content-between">
