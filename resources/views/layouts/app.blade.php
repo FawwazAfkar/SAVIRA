@@ -21,23 +21,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/b-print-3.1.0/sc-2.4.3/sp-2.3.1/datatables.min.css" rel="stylesheet">
     
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    {{-- <style>
-        .dataTables_wrapper {
-            width: 100%;
-            margin: 0 auto;
-        }
-        table.dataTable {   
-            width: 100% !important;
-        }
-    </style> --}}
-
+    @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/css/app.css'])
 </head>
 
 <body class="@if(Route::is('login')) login-page @endif">
@@ -45,38 +36,12 @@
         <!-- Permission for sidebar view -->
         @if (Auth::user())
            <x-sidebar /> 
+           <x-navbar />
         @endif
 
         <!-- Home Section -->
         <section class="home-section">
         <div class="home-content">
-            <!-- NavBar View Permission -->
-            @if (Auth::user())
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-              <i class='bx bx-menu'></i>  
-              <div class="container">      
-                  {{-- <x-nav-logo class="w-20 h-20" />
-                    <a class="navbar-brand m-1" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button> --}}
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-                        </ul>
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                {{ Auth::user()->name }}
-                                <i class='bx bx-user-circle'></i>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            @endif
             <!-- Main Content -->
                 <main class="main-content">
                     @yield('content')

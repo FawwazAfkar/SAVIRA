@@ -1,17 +1,13 @@
-    
-<!-- Style -->
-<link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-<!-- Sidebar HTML -->
 <div class="sidebar close">
-    <div class="logo-details">
-      <i class='bx'>
-        <x-nav-logo class="w-20 h-20" />
-      </i>
-    <span class="logo_name">SAVIRA</span>
 
+    <div class="logo-details">
+      <div class="logo_icon"><x-nav-logo /></div>
+      <div class="logo_text">
+        <span class="logo_name">SAVIRA</span>
+        <span class="logo_desc">Sistem Penyimpanan Arsip Vital Regional Banyumas</span>
+      </div>
     </div>
+    
     <ul class="nav-links">
       <li>
         <a href="{{ route('home') }}">
@@ -39,10 +35,10 @@
       <li>
         <a href="{{ route('daftar-instansi') }}">
           <i class='bx bx-buildings' ></i>
-          <span class="link_name">Daftar Instansi</span>
+          <span class="link_name">Daftar Unit Kerja</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="{{ route('daftar-instansi') }}">Daftar Instansi</a></li>
+          <li><a class="link_name" href="{{ route('daftar-instansi') }}">Daftar Unit Kerja</a></li>
         </ul>
       </li>
       @endcan
@@ -64,12 +60,12 @@
               <div class="profile_name">{{ Auth::user()->name }}</div>
               <div class="job">{{ Auth::user()->instansi->nama_instansi }}</div>
           </div>
-          <div>
+          <div class="logoutbtn">
             <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                 <i class='bx bx-log-out'></i>
-              </a>
+            </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               @csrf
             </form>
@@ -78,3 +74,5 @@
   </li>
 </ul>
 </div>
+
+<div id="overlay" class="overlay"></div>

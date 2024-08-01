@@ -1,0 +1,276 @@
+/* sidebar css */
+  .sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300px;
+    background: #11101d;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+  }
+  .sidebar.close{
+    width: 78px;
+  }
+
+  .sidebar .logo-details{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    top: 0;
+    -webkit-text-fill-color: #11101d;
+  }
+  .sidebar .logo-details .logo_icon{
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    margin-left: 2px;
+  }
+  .sidebar .logo-details .logo_text{
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar.close .logo-details .logo_text{
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+  .sidebar .logo-details .logo_text .logo_name{
+    font-size: 22px;
+    color: #fff;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    transition-delay: 0.1s;
+  }
+  .sidebar .logo-details .logo_text .logo_desc{
+    font-size: 10px;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    transition-delay: 0.1s;
+  }
+  .sidebar.close .logo-details .logo_text .logo_name{
+    transition-delay: 0s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sidebar.close .logo-details .logo_text .logo_desc{
+    transition-delay: 0s;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sidebar .nav-links{
+    height: 100%;
+    padding: 40px 0 150px 0;
+    overflow: auto;
+  }
+  .sidebar.close .nav-links{
+    overflow: visible;
+  }
+  .sidebar .nav-links::-webkit-scrollbar{
+    display: none;
+  }
+  .sidebar .nav-links li{
+    position: relative;
+    list-style: none;
+    transition: all 0.2s ease;
+  }
+  .sidebar .nav-links li:hover{
+    background: #1d1b31;
+  }
+  .sidebar .nav-links li .iocn-link{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sidebar.close .nav-links li .iocn-link{
+    display: block
+  }
+  .sidebar .nav-links li i{
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .sidebar .nav-links li.showMenu i.arrow{
+    transform: rotate(-180deg);
+  }
+  .sidebar.close .nav-links i.arrow{
+    display: none;
+  }
+  .sidebar .nav-links li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .sidebar .nav-links li a .link_name{
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .sidebar.close .nav-links li a .link_name{
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sidebar .nav-links li .sub-menu{
+    padding: 6px 6px 14px 80px;
+    margin-top: -10px;
+    background: #1d1b31;
+    display: none;
+  }
+  .sidebar .nav-links li.showMenu .sub-menu{
+    display: block;
+  }
+  .sidebar .nav-links li .sub-menu a{
+    color: #fff;
+    font-size: 15px;
+    padding: 5px 0;
+    white-space: nowrap;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+  }
+  .sidebar .nav-links li .sub-menu a:hover{
+    opacity: 1;
+  }
+  .sidebar.close .nav-links li .sub-menu{
+    position: absolute;
+    left: 100%;
+    top: -10px;
+    margin-top: 0;
+    padding: 10px 20px;
+    border-radius: 0 6px 6px 0;
+    opacity: 0;
+    display: block;
+    pointer-events: none;
+    transition: 0s;
+  }
+  .sidebar.close .nav-links li:hover .sub-menu{
+    top: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.2s ease;
+  }
+  .sidebar .nav-links li .sub-menu .link_name{
+    display: none;
+  }
+  .sidebar.close .nav-links li .sub-menu .link_name{
+    font-size: 18px;
+    opacity: 1;
+    display: block;
+  }
+  .sidebar .nav-links li .sub-menu.blank{
+    opacity: 1;
+    pointer-events: auto;
+    padding: 3px 20px 6px 16px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .sidebar .nav-links li:hover .sub-menu.blank{
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .sidebar .profile-details{
+    position: fixed;
+    bottom: 0;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background: #1d1b31;
+    padding: 12px 0;
+    transition: all 0.2s ease;
+    height: 150px;
+  }
+  .sidebar.close .profile-details{
+    background: none;
+    width: 78px;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sidebar .profile-details .profile_name,
+  .sidebar .profile-details .job{
+    color: #fff;
+    transition: all 0s ease;
+    transition-delay: 0s ;
+    margin-left: 10px;
+    max-width: 200px;
+    opacity: 1;
+  }
+  .sidebar .profile-details .profile_name{
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 10px;
+    max-width: 200px;
+    opacity: 1;
+  }
+  .sidebar .profile-details .job{
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    margin-left: 10px;
+    max-width: 200px;
+    opacity: 1;
+  }
+  .sidebar.close .profile-details .profile_name,
+  .sidebar.close .profile-details .job{
+    max-width: 0;
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
+  .sidebar .profile-details .logoutbtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    color: #fff;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .sidebar.close .profile-details .logoutbtn{
+    margin-left: 0;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .sidebar .profile-details .logoutbtn{
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .sidebar .profile-details i {
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+.sidebar .profile-details .logoutbtn:hover,
+.sidebar.close .profile-details .logoutbtn:hover{
+    background-color: red;
+    border-radius: 50%;
+  }
+  .sidebar .profile-details .job{
+    font-size: 12px;
+  }
+  
+
+  @media (max-width: 420px) {
+    .sidebar.close .nav-links li .sub-menu{
+      display: none;
+    }
+  }
+  /* End of sidebar css */
