@@ -6,7 +6,7 @@
     height: 100%;
     width: 300px;
     background: #11101d;
-    z-index: 1000;
+    z-index: 2;
     transition: all 0.2s ease;
     font-family: 'Poppins', sans-serif;
   }

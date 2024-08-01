@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-grid">
-                        <a href="{{ route('daftar-arsip') }}" class="btn btn-dark w-100 text-center" style="text-decoration: none; color: whitesmoke;">
+                        <a href="{{ route('daftar-arsip') }}" class="btn btn-dark btnlink w-100 text-center">
                             <small> Lihat Daftar Arsip </small>
                         </a>
                     </div>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-grid">
-                        <a href="{{ route('daftar-user') }}" class="btn btn-dark w-100 text-center" style="text-decoration: none; color: whitesmoke;">
+                        <a href="{{ route('daftar-user') }}" class="btn btn-dark btnlink w-100 text-center">
                             <small>Lihat Daftar User</small>
                         </a>
                     </div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-grid">
-                        <a href="{{ route('daftar-instansi') }}" class="btn btn-dark w-100 text-center" style="text-decoration: none; color: whitesmoke;">
+                        <a href="{{ route('daftar-instansi') }}" class="btn btn-dark btnlink w-100 text-center">
                             <small>Lihat Daftar Unit Kerja</small>
                         </a>
                     </div>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div class="card-footer d-grid">
-                        <a href="{{ route('daftar-arsip') }}" class="btn btn-dark w-100 text-center" style="text-decoration: none; color: whitesmoke;">
+                        <a href="{{ route('daftar-arsip') }}" class="btn btn-dark btnlink w-100 text-center">
                             <small>Lihat Daftar Arsip</small>
                         </a>
                     </div>
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-grid">
-                            <a href="{{ route('daftar-user') }}" class="btn btn-dark w-100 text-center" style="text-decoration: none; color: whitesmoke;">
+                            <a href="{{ route('daftar-user') }}" class="btn btn-dark btnlink w-100 text-center">
                                 <small>Lihat Daftar User</small>
                             </a>
                         </div>

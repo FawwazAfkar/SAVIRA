@@ -1,9 +1,12 @@
 /* navbar css */
 .navbar {
     transition: margin-left 0.2s ease;
-    position: relative;
+    position: fixed;
+    top: 0;
+    width: calc(100% - 78px);
     background-color: #f8f9fa;
     height: 80px;
+    z-index: 1;
 }
 
 .sidebar ~ .navbar {
