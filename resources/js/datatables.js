@@ -168,6 +168,36 @@ $(document).ready(function() {
                     },
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
+                    },
+                    action: function (e, dt, button, config) {
+                        // Manually copy data to clipboard
+                        var data = dt.buttons.exportData({
+                            columns: config.exportOptions.columns
+                        });
+
+                        var header = data.header.join('\t') + '\n';
+                        var body = data.body.map(function(row) {
+                            return row.join('\t');
+                        }).join('\n');
+
+                        var clipboardData = header + body;
+
+                        var $temp = $('<textarea>').appendTo('body');
+                        $temp.val(clipboardData).select();
+                        document.execCommand('copy');
+                        $temp.remove();
+
+
+
+                        // Trigger SweetAlert2 notification
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Tersalin!',
+                            text: 'Data berhasil disalin ke clipboard.',
+                            timer: 3000,
+                            showConfirmButton: true,
+                            confirmButtonColor: 'blue'
+                        });
                     }
                 },
                 {
@@ -195,8 +225,11 @@ $(document).ready(function() {
                     titleAttr: 'Export to PDF',
                     orientation: 'landscape',
                     pageSize: 'A4',
+                    title: 'Daftar Arsip',
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        //delete title "Data Arsip" from exported pdf
+                        title: ':null'
                     },
                     customize: function(doc) {
                         doc.defaultStyle.fontSize = 8;
@@ -227,6 +260,52 @@ $(document).ready(function() {
                                 }
                             });
                         });
+                        doc.content.splice(0, 0, {
+                            columns: [
+                                {
+                                    stack: [
+                                        { text: 'PEMERINTAH KABUPATEN BANYUMAS', fontSize: 14, bold: true, alignment: 'center' },
+                                        { text: 'DINAS ARSIP DAN PERPUSTAKAAN DAERAH', fontSize: 16, bold: true, alignment: 'center' },
+                                        { text: 'Jalan Jenderal Gatot Subroto Nomor.85, Purwokerto, Banyumas, Kode Pos 53116', fontSize: 10, alignment: 'center' },
+                                        { text: 'Telepon (0281) 636115, Faksimile (0281) 636225', fontSize: 10, alignment: 'center' },
+                                        { text: 'Website : www.dinarpus.banyumaskab.go.id, E-mail : arpusdabanyumas@gmail.com', fontSize: 10, alignment: 'center', color: 'blue' }
+                                    ],
+                                    margin: [0, 0, 0, 5] // Margin bawah setelah kop
+                                }
+                            ],
+                            columnGap: 10 // Jarak antara logo dan teks
+                        });
+                        // Garis bawah pertama
+                        doc.content.splice(1, 0, {
+                            canvas: [{
+                                type: 'line',
+                                x1: 0,
+                                y1: 0,
+                                x2: 841 - 80, // Mengatur panjang garis agar mencapai tepi kertas lanskap
+                                y2: 0,
+                                lineWidth: 1.5 // Tebal garis pertama
+                            }]
+                        });
+
+                        // Garis bawah kedua
+                        doc.content.splice(2, 0, {
+                            canvas: [{
+                                type: 'line',
+                                x1: 0,
+                                y1: 2, // Jarak antara garis pertama dan kedua
+                                x2: 841 - 80, // Mengatur panjang garis agar mencapai tepi kertas lanskap
+                                y2: 2,
+                                lineWidth: 0.75 // Tebal garis kedua lebih tipis
+                            }],
+                            margin: [0, 0, 0, 12] // Margin bawah untuk memberi ruang sebelum tabel dimulai
+                        });
+
+                        //menghapus judul "Data Arsip" dari pdf
+                        doc.content.splice(3, 1);
+                        
+                        // Mengatur posisi teks di tengah sel
+                        doc.styles.tableBodyEven = { alignment: 'center' };
+                        doc.styles.tableBodyOdd = { alignment: 'center' };
                     }
                 },
                 {
