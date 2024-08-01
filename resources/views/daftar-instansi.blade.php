@@ -32,7 +32,7 @@
             @endif
 
             {{-- Instansi/Unit Kerja Table --}}
-            <table id="data" class="table table-responsive table-bordered table-striped display">
+            <table id="datainstansi" class="table table-responsive table-bordered table-striped display">
                 <thead>
                     <tr>
                         <th>No</th>

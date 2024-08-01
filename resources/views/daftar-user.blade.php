@@ -32,7 +32,7 @@
             @endif
             
             {{-- User Table --}}
-            <table id="data" class="table table-responsive table-bordered table-striped display">
+            <table id="datauser" class="table table-responsive table-bordered table-striped display">
                 <thead>
                     <tr>
                         <th>No</th>
