@@ -52,12 +52,8 @@
                         <div class="row">
                             <div class="col">
                                 <h5>Aksi</h5>
-                                <button class="btn btn-dark">
-                                    <a href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" target="_blank" style="text-decoration: none; color:whitesmoke">Lihat Arsip</a>
-                                </button>
-                                <button class="btn btn-dark">
-                                    <a href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" download style="text-decoration: none; color:whitesmoke">Download</a>
-                                </button>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" target="_blank">Lihat Arsip</a>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" download>Download</a>
                             </div>
                         </div>
                     </div>

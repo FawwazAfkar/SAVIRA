@@ -7,7 +7,7 @@
           <h1 class="modal-title fs-5">Update User</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body mt-3">
           <form class="row g-3" method="POST" action="{{ route('user.update', $user->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
