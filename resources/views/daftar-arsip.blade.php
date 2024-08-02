@@ -68,7 +68,7 @@
                             @hasrole('SuperAdmin')<td>{{ $arsip->instansi->nama_instansi }}</td>@endhasrole
                             <td class="align-middle">
                                 <!-- Button Aksi -->
-                                <div class="d-flex gap-2 justify-content-between">
+                                <div class="d-flex gap-2 justify-content-center">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
                                     @can('editArsips')
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
