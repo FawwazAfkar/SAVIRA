@@ -42,7 +42,7 @@
                         <th>Tingkat Perkembangan</th>
                         <th>Kurun Waktu</th>
                         <th>Media</th>
-                        <th>Jumlah</th>
+                        <th id="jumlah">Jumlah</th>
                         <th>Jangka Simpan</th>
                         <th>Metode Perlindungan</th>
                         <th>Lokasi Simpan</th>

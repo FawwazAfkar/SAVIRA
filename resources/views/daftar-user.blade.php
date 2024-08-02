@@ -39,7 +39,7 @@
                         <th>Nama</th>
                         <th>E-Mail</th>
                         <th>Role</th>
-                        <th>Instansi</th>
+                        <th>Unit Kerja</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
