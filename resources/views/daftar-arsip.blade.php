@@ -47,7 +47,7 @@
                         <th>Metode Perlindungan</th>
                         <th>Lokasi Simpan</th>
                         <th>Keterangan</th>
-                        @hasrole('SuperAdmin')<th>Instansi</th>@endhasrole
+                        @hasrole('SuperAdmin')<th>Unit Kerja</th>@endhasrole
                         <th>Aksi</th>
                     </tr>
                 </thead>
