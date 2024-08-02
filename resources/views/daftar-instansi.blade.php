@@ -32,10 +32,10 @@
             @endif
 
             {{-- Instansi/Unit Kerja Table --}}
-            <table id="datainstansi" class="table table-responsive table-bordered table-striped display">
+            <table id="datainstansi" class="table table-responsive table-bordered table-striped display align-middle">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th class="text-center">No</th>
                         <th>Nama Unit Kerja</th>
                         <th>Aksi</th>
                     </tr>
@@ -44,11 +44,11 @@
                         @php $no = 1; @endphp
                         @foreach ($instansis as $instansi)
                         <tr>
-                            <td>{{ $no++ }}</td>
+                            <td class="text-center">{{ $no++ }}</td>
                             <td>{{ $instansi->nama_instansi }}</td>
-                            <td>
+                            <td class="align-middle">
                                <!-- Button Aksi -->
-                                <div class="d-flex gap-2 justify-content-start">
+                                <div class="d-flex gap-2 justify-content-center">
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateInstansi{{ $instansi->id }}"><i class='bx bx-edit'></i></button>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteInstansi{{ $instansi->id }}"><i class='bx bx-trash'></i></button>
                                 </div>

@@ -34,20 +34,20 @@
             @endif
             
             {{-- Arsip Vital Table --}}
-            <table id="dataarsip" class="table table-responsive table-bordered table-striped display">
+            <table id="dataarsip" class="table table-responsive table-bordered table-striped display align-middle">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th class="text-center">No</th>
                         <th>Jenis Arsip</th>
                         <th>Tingkat Perkembangan</th>
-                        <th>Kurun Waktu</th>
+                        <th class="text-start">Kurun Waktu</th>
                         <th>Media</th>
-                        <th>Jumlah</th>
+                        <th id="jumlah">Jumlah</th>
                         <th>Jangka Simpan</th>
                         <th>Metode Perlindungan</th>
                         <th>Lokasi Simpan</th>
                         <th>Keterangan</th>
-                        @hasrole('SuperAdmin')<th>Instansi</th>@endhasrole
+                        @hasrole('SuperAdmin')<th>Unit Kerja</th>@endhasrole
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -55,10 +55,10 @@
                         @php $no = 1; @endphp
                         @foreach ($arsips as $arsip)
                         <tr>
-                            <td>{{ $no++ }}</td>
+                            <td class="text-center">{{ $no++ }}</td>
                             <td>{{ $arsip->jenis_arsip }}</td>
                             <td>{{ $arsip->tingkat_perkembangan }}</td>
-                            <td>{{ $arsip->kurun_waktu }}</td>
+                            <td class="text-center">{{ $arsip->kurun_waktu }}</td>
                             <td>{{ $arsip->media }}</td>
                             <td>{{ $arsip->jumlah }}</td>
                             <td>{{ $arsip->jangka_simpan }}</td>
@@ -66,9 +66,9 @@
                             <td>{{ $arsip->lokasi_simpan }}</td>
                             <td>{{ $arsip->keterangan }}</td>
                             @hasrole('SuperAdmin')<td>{{ $arsip->instansi->nama_instansi }}</td>@endhasrole
-                            <td>
+                            <td class="align-middle">
                                 <!-- Button Aksi -->
-                                <div class="d-flex gap-2 justify-content-between">
+                                <div class="d-flex gap-2 justify-content-center">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewArsip{{ $arsip->id }}"><i class='bx bx-info-circle'></i></button>
                                     @can('editArsips')
                                         <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateArsip{{ $arsip->id }}"><i class='bx bx-edit'></i></button>
