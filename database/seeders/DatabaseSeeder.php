@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'nama_instansi' => 'Dinas Arsip dan Perpustakaan Daerah Kabupaten Banyumas',
         ]);
 
-        // Create users with roles and instansi assigned
+        // Create first user (Super Admin)
         $superAdmin = User::create([
             'name' => 'Super Admin',
             'email' => 'spadmin@example.com',
@@ -31,32 +31,10 @@ class DatabaseSeeder extends Seeder
             'instansi_id' => $instansi->id,
         ]);
 
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'role' => 'admin',
-            'password' => Hash::make('admin123'),
-            'instansi_id' => $instansi->id,
-        ]);
-
-        $user = User::create([
-            'name' => 'waz',
-            'email' => 'wawaz@gmail.com',
-            'password' => Hash::make('password'),
-            'instansi_id' => $instansi->id,
-        ]);
-
-        
-
         // Create spatie roles
         Role::create(['name' => 'SuperAdmin']);
         Role::create(['name' => 'Admin']);
         Role::create(['name' => 'User']);
-        
-        // Assign roles to users
-        $superAdmin->assignRole('SuperAdmin');
-        $admin->assignRole('Admin');
-        $user->assignRole('User');
 
         // Create spatie permissions
         $ManageUsers = Permission::create(['name' => 'manageUsers']);
@@ -65,17 +43,13 @@ class DatabaseSeeder extends Seeder
         $EditArsips = Permission::create(['name' => 'editArsips']);
         $DeleteArsips = Permission::create(['name' => 'deleteArsips']);
 
-        // Assign permissions to roles
+        // Assign roles to users (Super Admin)
+        $superAdmin->assignRole('SuperAdmin');
+
+        // Assign permissions to roles (Super Admin)
         $superAdmin->givePermissionTo(
             $ManageUsers,
             $ManageInstansis,
-            $CreateArsips,
-            $EditArsips,
-            $DeleteArsips
-        );
-
-        $admin->givePermissionTo(
-            $ManageUsers,
             $CreateArsips,
             $EditArsips,
             $DeleteArsips

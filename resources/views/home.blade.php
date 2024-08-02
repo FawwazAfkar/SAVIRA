@@ -24,7 +24,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="me-3">
                                 <h6 class="">Jumlah Arsip</h6>
-                                <div class="text-lg fs-3 fw-bold">{{ $arsipvitalCount }}</div>
+                                <div class="text-lg fs-3 fw-bold">{{ $arsips->count() }}</div>
                             </div>
                             <img src="{{ asset('assets/images/archive.svg') }}" class="img-fluid rounded-start" alt="arsip">
                         </div>
@@ -42,7 +42,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="me-3">
                                 <h6 class="">Jumlah User</h6>
-                                <div class="text-lg fs-3 fw-bold">{{ $userCount }}</div>
+                                <div class="text-lg fs-3 fw-bold">{{ $users->count() }}</div>
                             </div>
                             <img src="{{ asset('assets/images/users.svg') }}" class="img-fluid rounded-start" alt="arsip">
                         </div>
@@ -60,7 +60,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="me-3">
                                 <h6 class="">Jumlah Unit Kerja</h6>
-                                <div class="text-lg fs-3 fw-bold">{{ $instansiCount }}</div>
+                                <div class="text-lg fs-3 fw-bold">{{ $instansis->count() }}</div>
                             </div>
                             <img src="{{ asset('assets/images/buildings.svg') }}" class="img-fluid rounded-start" alt="arsip">
                         </div>

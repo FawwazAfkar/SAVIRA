@@ -43,31 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
         var file = event.target.files[0];
         var pdfViewer = document.getElementById('pdf-viewer-input');
 
-        if (file && file.type === 'application/pdf') {
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-                renderPDF(e.target.result, pdfViewer);
-            };
-
-            reader.readAsArrayBuffer(file);
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Maaf, file yang diupload harus berformat PDF!',
-            });
-        }
-    });
-
-    // Handle file selection for update by identifying the file ID
-    document.querySelectorAll('input[id^="file_update_"]').forEach(input => {
-        input.addEventListener('change', function(event) {
-            var file = event.target.files[0];
-            var fileId = event.target.id.split('_').pop(); // Extract ID from input
-            var pdfViewer = document.getElementById('pdf-viewer-update_' + fileId);
-
-            if (file && file.type === 'application/pdf') {
+        if(file) {
+            if (file.type === 'application/pdf') {
                 var reader = new FileReader();
                 
                 reader.onload = function(e) {
@@ -82,6 +59,39 @@ document.addEventListener('DOMContentLoaded', function() {
                     text: 'Maaf, file yang diupload harus berformat PDF!',
                 });
             }
+        } else {
+            pdfViewer.innerHTML = '';
+        }
+        
+    });
+
+    // Handle file selection for update by identifying the file ID
+    document.querySelectorAll('input[id^="file_update_"]').forEach(input => {
+        input.addEventListener('change', function(event) {
+            var file = event.target.files[0];
+            var fileId = event.target.id.split('_').pop(); // Extract ID from input
+            var pdfViewer = document.getElementById('pdf-viewer-update_' + fileId);
+
+            if (file) {
+                if (file.type === 'application/pdf') {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        renderPDF(e.target.result, pdfViewer);
+                    };
+
+                    reader.readAsArrayBuffer(file);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Maaf, file yang diupload harus berformat PDF!',
+                    });
+                }
+            }else {
+                pdfViewer.innerHTML = '';
+            }
+            
         });
     });
 

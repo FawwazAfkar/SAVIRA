@@ -33,26 +33,20 @@ class HomeController extends Controller
         $instansis = Instansi::all();
         $arsips = ArsipVital::all();
 
-        // Count total users, instansis, and arsip vitals for super admin
-        $userCount = User::count();
-        $instansiCount = Instansi::count();
-        $arsipvitalCount = ArsipVital::count();
-
-        return view('home', compact('users', 'instansis', 'arsips', 'userCount', 'instansiCount', 'arsipvitalCount'));
+        return view('home', compact('users', 'instansis', 'arsips'));
     } else {
-        // If user is not super admin, show only their own instansi data
-        $user = Auth::user();
-        $instansiId = $user->instansi_id;
+        // If user is not super admin, show only their own instansi arsip vitals
+        $instansiId = Auth::user()->instansi_id;
         $arsips = ArsipVital::where('instansi_id', $instansiId)->get();
 
-        // Only for admins, include additional user data from their instansi
-        if ($user->role == 'admin') {
-            $users = User::where('instansi_id', $instansiId)->get();
-            return view('home', compact('user', 'arsips', 'users'));
+        // Only for admins, include additional user data from their instansi only
+        if (Auth::user()->role == 'admin') {
+            $users = User::where('instansi_id', $instansiId)->where('role', 'user')->get();
+            return view('home', compact('arsips', 'users'));
         }
 
         // For normal users, do not include other user data
-        return view('home', compact('user', 'arsips'));
+        return view('home', compact('arsips'));
     }
 }
 
