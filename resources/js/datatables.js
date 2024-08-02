@@ -1,3 +1,4 @@
+import { auto } from '@popperjs/core';
 import { logoBase64 } from './constant.js';
 
 $(document).ready(function() {
@@ -76,7 +77,7 @@ $(document).ready(function() {
                         var rowCount = tableBody.length;
                         var columnCount = tableBody[0].length;
                         doc.content[1].margin = [0, 0, 0, 0];
-                        doc.content[1].table.widths = ['5%', '20%', '28%', '12%', '35%'];
+                        doc.content[1].table.widths = auto;
                         tableBody.forEach(function(row) {
                             row.forEach(function(cell, index) {
                                 if (index !== 1 && index !== 4) {
@@ -521,19 +522,7 @@ $(document).ready(function() {
                     customize: function(doc) {
                         doc.defaultStyle.fontSize = 10;
                         doc.styles.tableHeader.fontSize = 12;
-                        doc.content[1].table.widths = [
-                            '3%',   // No
-                            '19%',  // Jenis Arsip
-                            '11%',  // Tingkat Perkembangan
-                            '9%',  // Kurun Waktu
-                            '5%',  // Media
-                            '7%',  // Jumlah
-                            '6%',  // Jangka Simpan
-                            '9%',  // Metode Perlindungan
-                            '6%',  // Lokasi Simpan
-                            '13%',  // Keterangan
-                            '12%'   // Instansi
-                        ];
+                        doc.content[1].table.widths = auto;
 
                         //styling header with color
                         doc.content[1].table.headerRows = 1;
