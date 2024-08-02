@@ -2,6 +2,11 @@ import { auto } from '@popperjs/core';
 import { logoBase64 } from './constant.js';
 
 $(document).ready(function() {
+    var today = new Date();
+    var formattedDate = today.getFullYear() + 
+        ('0' + (today.getMonth() + 1)).slice(-2) + 
+        ('0' + today.getDate()).slice(-2);
+
     $('#datauser').DataTable(
         {
             dom:
@@ -46,7 +51,8 @@ $(document).ready(function() {
                     extend: 'csvHtml5',
                     text: 'CSV',
                     className: 'btn btn-info',
-                    titleAttr: 'Export to CSV',
+                    filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     }
@@ -55,7 +61,8 @@ $(document).ready(function() {
                     extend: 'excelHtml5',
                     text: 'Excel',
                     className: 'btn btn-success',
-                    titleAttr: 'Export to Excel',
+                    filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     }
@@ -64,7 +71,8 @@ $(document).ready(function() {
                     extend: 'pdfHtml5',
                     text: 'PDF',
                     className: 'btn btn-danger',
-                    titleAttr: 'Export to PDF',
+                    filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
                     orientation: 'portrait',
                     pageSize: 'A4',
                     exportOptions: {
@@ -166,15 +174,6 @@ $(document).ready(function() {
                     }
                 },
                 {
-                    extend: 'print',
-                    text: 'Print',
-                    className: 'btn btn-warning',
-                    titleAttr: 'Print table',
-                    exportOptions: {
-                        columns: ':visible:not(:last-child)'
-                    }
-                },
-                {
                     extend: 'colvis',
                     text: 'Kolom',
                     className: 'btn btn-secondary',
@@ -213,6 +212,11 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
+    var today = new Date();
+    var formattedDate = today.getFullYear() + 
+        ('0' + (today.getMonth() + 1)).slice(-2) + 
+        ('0' + today.getDate()).slice(-2);
+
     $('#datainstansi').DataTable(
         {
             dom:
@@ -257,7 +261,8 @@ $(document).ready(function() {
                     extend: 'csvHtml5',
                     text: 'CSV',
                     className: 'btn btn-info',
-                    titleAttr: 'Export to CSV',
+                    filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     }
@@ -266,7 +271,8 @@ $(document).ready(function() {
                     extend: 'excelHtml5',
                     text: 'Excel',
                     className: 'btn btn-success',
-                    titleAttr: 'Export to Excel',
+                    filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     }
@@ -277,6 +283,8 @@ $(document).ready(function() {
                     className: 'btn btn-danger',
                     titleAttr: 'Export to PDF',
                     orientation: 'portrait',
+                    filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
                     pageSize: 'A4',
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
@@ -373,17 +381,8 @@ $(document).ready(function() {
                             margin: [0, 0, 0, 12] // Margin bawah untuk memberi ruang sebelum tabel dimulai
                         });
 
-                        //menghapus judul "Data Arsip" dari pdf
+                        //menghapus judul "Data Instansi" dari pdf
                         doc.content.splice(3, 1);
-                    }
-                },
-                {
-                    extend: 'print',
-                    text: 'Print',
-                    className: 'btn btn-warning',
-                    titleAttr: 'Print table',
-                    exportOptions: {
-                        columns: ':visible:not(:last-child)'
                     }
                 },
                 {
@@ -426,6 +425,11 @@ $(document).ready(function() {
 
 // Data table for Arsip Vital's Table
 $(document).ready(function() {
+    var today = new Date();
+    var formattedDate = today.getFullYear() + 
+        ('0' + (today.getMonth() + 1)).slice(-2) + 
+        ('0' + today.getDate()).slice(-2);
+        
     $('#dataarsip').DataTable(
         {
             dom:
@@ -494,7 +498,8 @@ $(document).ready(function() {
                     extend: 'csvHtml5',
                     text: 'CSV',
                     className: 'btn btn-info',
-                    titleAttr: 'Export to CSV',
+                    filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     }
@@ -503,7 +508,8 @@ $(document).ready(function() {
                     extend: 'excelHtml5',
                     text: 'Excel',
                     className: 'btn btn-success',
-                    titleAttr: 'Export to Excel',
+                    filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     },
@@ -512,10 +518,10 @@ $(document).ready(function() {
                     extend: 'pdfHtml5',
                     text: 'PDF',
                     className: 'btn btn-danger',
-                    titleAttr: 'Export to PDF',
+                    filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
                     orientation: 'landscape',
                     pageSize: 'A4',
-                    title: 'Daftar Arsip',
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                     },
@@ -606,15 +612,6 @@ $(document).ready(function() {
                         //menghapus judul "Data Arsip" dari pdf
                         doc.content.splice(3, 1);
 
-                    }
-                },
-                {
-                    extend: 'print',
-                    text: 'Print',
-                    className: 'btn btn-warning',
-                    titleAttr: 'Print table',
-                    exportOptions: {
-                        columns: ':visible:not(:last-child)'
                     }
                 },
                 {
