@@ -4,19 +4,15 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Detail Arsip</h1>
+                <h1 class="modal-title fs-4">Detail Arsip</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row g-3">
                     <div class="col-5 d-flex align-items-center justify-content-center">
-                        <embed id="viewer" src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" class="object-fit-cover" style="width: 100%; height:100%">
-                        {{--
-                        <iframe src="{{ asset('storage/arsipvital/'.$arsip->file) }}" id="viewer" class="" style="height: 30rem;"></iframe>
-                        {{-- <div style="overflow: hidden; width: 80%; height: 100%;">
-                            <embed src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" class="img-fluid" style="height: 100%; width: 100%;">
-                        </div> 
-                        --}}
+                        <div class="form-control" style="height: 100%">
+                            <iframe src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" style="width: 100%; height: 100%"></iframe>
+                        </div>
                     </div>
                     <div class="col-4">
                         <div class="row">
@@ -52,8 +48,8 @@
                         <div class="row">
                             <div class="col">
                                 <h5>Aksi</h5>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" target="_blank">Lihat Arsip</a>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" download>Download</a>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.view',$arsip->id) }}" target="_blank">Lihat Arsip</a>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download',$arsip->id) }}" download>Download</a>
                             </div>
                         </div>
                     </div>
@@ -92,7 +88,7 @@
     </div>
 </div>
 <!-- End Modal -->
-<script>
+{{-- <script>
     $(document).ready(function() {
         const viewer = document.getElementById('viewer');
         viewer.onload = function() {
@@ -103,4 +99,4 @@
             page.style.transform = `scale(${scale})`;
         };
     });
-</script>
+</script> --}}

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Tambah Unit Kerja</h1>
+          <h1 class="modal-title fs-4">Tambah Unit Kerja</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -11,9 +11,9 @@
             @csrf
             @method('POST')
             <div class="col-md-6">
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="nama_instansi" class="form-label ms-1 fs-5">{{ __('Nama Unit Kerja') }}</label>
                 <input id="nama_instansi" name="nama_instansi" type="text" class="form-control" placeholder="" required>
-                <label for="nama_instansi" class="form-label">{{ __('Nama Unit Kerja') }}</label>
               </div>
             </div>
           </div>

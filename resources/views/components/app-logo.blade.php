@@ -9,7 +9,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="100"
-   viewBox="0 0 130 135"
+   viewBox="0 0 130 141"
    version="1.1"
    id="svg916"
    sodipodi:docname="Emblem_of_Banyumas_Regency.svg"

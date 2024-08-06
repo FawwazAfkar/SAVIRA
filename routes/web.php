@@ -17,6 +17,8 @@ Auth::routes();
 Route::middleware('auth')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/daftar-arsip', [HomeController::class, 'daftarAV'])->name('daftar-arsip');
+    Route::get('/arsip/{id}/view', [ArsipController::class, 'viewArsip'])->name('arsip.view');
+    Route::get('/arsip/{id}/download', [ArsipController::class, 'downloadArsip'])->name('arsip.download');
 });
 
 // Super admin and admin only routes

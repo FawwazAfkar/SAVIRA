@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Instansi;
+use Illuminate\Database\QueryException;
 
 class InstansiController extends Controller
 {
@@ -37,9 +38,14 @@ class InstansiController extends Controller
     // delete instansi by id
     public function destroy($id)
     {
-        Instansi::destroy($id);
+        try {
+            Instansi::destroy($id);
 
-        return redirect()->route('daftar-instansi')
-            ->with('success', 'Instansi/Unit Kerja berhasil dihapus.');
+            return redirect()->route('daftar-instansi')
+                ->with('success', 'Instansi/Unit Kerja berhasil dihapus.');
+        } catch (QueryException $e) {
+            return redirect()->route('daftar-instansi')
+                ->with('error', 'Instansi/Unit Kerja tidak bisa dihapus karena masih ada pengguna atau arsip yang terkait.');
+        }
     }
 }

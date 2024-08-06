@@ -8,26 +8,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
     let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".bx-menu");
     let navbar = document.querySelector(".navbar");
     let mainContent = document.querySelector(".main-content");
-    console.log(sidebarBtn);
-    sidebarBtn.addEventListener("click", () => {
-        sidebar.classList.toggle("close");
-        navbar.classList.toggle("sidebar-closed"); 
-    });
 
     // Add hover functionality
     sidebar.addEventListener("mouseover", () => {
-        sidebar.classList.remove("close");
-        mainContent.classList.add("faded-content");
-        navbar.classList.remove("sidebar-closed");
-    });
+            sidebar.classList.remove("close");
+            mainContent.classList.add("faded-content");
+            navbar.classList.remove("sidebar-closed");
+        });
 
     sidebar.addEventListener("mouseout", () => {
-        sidebar.classList.add("close");
-        mainContent.classList.remove("faded-content");
-        navbar.classList.add("sidebar-closed");
+            sidebar.classList.add("close");
+            mainContent.classList.remove("faded-content");
+            navbar.classList.add("sidebar-closed");
     });
 });
 

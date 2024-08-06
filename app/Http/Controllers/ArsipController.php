@@ -96,4 +96,19 @@ class ArsipController extends Controller
         return redirect()->route('daftar-arsip')
             ->with('success', 'Arsip berhasil dihapus.');
     }
+
+    // view arsip by id
+    public function viewArsip($id)
+    {
+        $arsip = ArsipVital::findOrFail($id);
+        return response()->file(storage_path('app/public/arsipvital/' . $arsip->file));
+    }
+
+    // download arsip by id
+    public function downloadArsip($id)
+    {
+        $arsip = ArsipVital::findOrFail($id);
+        return response()->download(storage_path('app/public/arsipvital/' . $arsip->file));
+    }
+
 }
