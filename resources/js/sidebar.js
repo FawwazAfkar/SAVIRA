@@ -30,3 +30,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
         navbar.classList.add("sidebar-closed");
     });
 });
+
+
+// Alert before logout
+document.querySelector('.logoutbtn a').addEventListener('click', function(e) {
+    e.preventDefault();
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Anda akan keluar dari sistem!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Keluar!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+        document.getElementById('logout-form').submit();
+        }
+    })
+});
