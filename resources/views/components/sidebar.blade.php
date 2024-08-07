@@ -4,7 +4,7 @@
       <div class="logo_icon"><x-nav-logo /></div>
       <div class="logo_text">
         <span class="logo_name">SAVIRA</span>
-        <span class="logo_desc">Sistem Penyimpanan Arsip Vital Regional Banyumas</span>
+        <span class="logo_desc">Sistem Penyimpanan Arsip Vital Regional <br> Banyumas</span>
       </div>
     </div>
     

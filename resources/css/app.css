@@ -6,7 +6,9 @@
 *{
     box-sizing: border-box;
 }
-
+body {
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
+}
 body.login-page .main-content {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
@@ -14,8 +16,8 @@ body.login-page .main-content {
 
 body:not(.login-page) .main-content {
     margin-top: 80px;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
 }
 .poppins {
     font-family: 'Poppins', sans-serif;

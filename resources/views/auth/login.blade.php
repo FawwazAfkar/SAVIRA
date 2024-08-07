@@ -16,7 +16,7 @@
             <div class="card mt-5">
                 <div class="card-header flex flex-col items-center text-center">
                     <x-app-logo class="w-20 h-20" /><br/>
-                    <span class="text-xl font-bold text-gray-500">Selamat Datang di SAVIRA</span>
+                    <span class="fs-5 font-bold text-gray-500">Selamat Datang di SAVIRA</span>
                 </div>
 
                 @if (session('error'))

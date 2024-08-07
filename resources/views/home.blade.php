@@ -10,8 +10,9 @@
                         <img src="{{ asset('assets/images/banyumaslogo.svg') }}" alt="logo">
                     </div>
                     <h1 class="text-center fw-bold">SAVIRA</h1>
-                    <p class="text-center fs-5">SAVIRA merupakan Sistem Penyimpanan Arsip Vital Regional Banyumas</p>
-                    <p class="text-center fs-6 fw-semibold">Selamat Datang, {{ Auth::user()->name }}</p>
+                    <p class="text-center fs-4">SAVIRA merupakan Sistem Penyimpanan Arsip Vital Regional Banyumas</p>
+                    <p class="text-center fs-5 fw-semibold">Selamat Datang, {{ Auth::user()->name }}</p>
+                    <p class="text-center">Unit Kerja : {{ Auth::user()->instansi->nama_instansi }}</p>
                 </div>
             </div>
         </div>
@@ -31,7 +32,7 @@
                     </div>
                     <div class="card-footer d-grid">
                         <a href="{{ route('daftar-arsip') }}" class="btn btn-dark btnlink w-100 text-center">
-                            <small> Lihat Daftar Arsip </small>
+                            <span> Lihat Daftar Arsip </span>
                         </a>
                     </div>
                 </div>
@@ -49,7 +50,7 @@
                     </div>
                     <div class="card-footer d-grid">
                         <a href="{{ route('daftar-user') }}" class="btn btn-dark btnlink w-100 text-center">
-                            <small>Lihat Daftar User</small>
+                            <span>Lihat Daftar User</span>
                         </a>
                     </div>
                 </div>
@@ -67,7 +68,7 @@
                     </div>
                     <div class="card-footer d-grid">
                         <a href="{{ route('daftar-instansi') }}" class="btn btn-dark btnlink w-100 text-center">
-                            <small>Lihat Daftar Unit Kerja</small>
+                            <span>Lihat Daftar Unit Kerja</span>
                         </a>
                     </div>
                 </div>
@@ -86,7 +87,7 @@
                     </div>
                     <div class="card-footer d-grid">
                         <a href="{{ route('daftar-arsip') }}" class="btn btn-dark btnlink w-100 text-center">
-                            <small>Lihat Daftar Arsip</small>
+                            <span>Lihat Daftar Arsip</span>
                         </a>
                     </div>
                 </div>
@@ -107,7 +108,7 @@
                         </div>
                         <div class="card-footer d-grid">
                             <a href="{{ route('daftar-user') }}" class="btn btn-dark btnlink w-100 text-center">
-                                <small>Lihat Daftar User</small>
+                                <span>Lihat Daftar User</span>
                             </a>
                         </div>
                     </div>

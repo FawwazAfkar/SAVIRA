@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">Detail Arsip</h1>
+                <h1 class="modal-title fs-4">Detail Arsip</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -86,7 +86,7 @@
     </div>
 </div>
 <!-- End Modal -->
-<script>
+{{-- <script>
     $(document).ready(function() {
         const viewer = document.getElementById('viewer');
         viewer.onload = function() {
@@ -97,4 +97,4 @@
             page.style.transform = `scale(${scale})`;
         };
     });
-</script>
+</script> --}}

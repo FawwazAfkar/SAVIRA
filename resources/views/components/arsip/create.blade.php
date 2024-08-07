@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Tambah Arsip</h1>
+          <h1 class="modal-title fs-4">Tambah Arsip</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -11,51 +11,54 @@
             @csrf
             @method('POST')
             <div class="col-md-6">
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="jenis_arsip" class="form-label ms-1 fs-5">{{ __('Jenis Arsip') }}</label>
                 <input id="jenis_arsip" name="jenis_arsip" type="text" class="form-control" placeholder="" required>
-                <label for="jenis_arsip" class="form-label">{{ __('Jenis Arsip') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="tingkat_perkembangan" class="form-label ms-1 fs-5">{{ __('Tingkat Perkembangan') }}</label>
                 <input id="tingkat_perkembangan" name="tingkat_perkembangan" type="text" class="form-control" placeholder="" required>
-                <label for="tingkat_perkembangan" class="form-label">{{ __('Tingkat Perkembangan') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="kurun_waktu" class="form-label ms-1 fs-5">{{ __('Kurun Waktu') }}</label>
                 <input id="kurun_waktu" name="kurun_waktu" type="text" class="form-control" placeholder="" required>
-                <label for="kurun_waktu" class="form-label">{{ __('Kurun Waktu') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="media" class="form-label ms-1 fs-5">{{ __('Media') }}</label>
                 <input id="media" name="media" type="text" class="form-control" placeholder="" required>
-                <label for="media" class="form-label">{{ __('Media') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="jumlah" class="form-label ms-1 fs-5">{{ __('Jumlah') }}</label>
                 <input id="jumlah" name="jumlah" type="text" class="form-control" placeholder="" required>
-                <label for="jumlah" class="form-label">{{ __('Jumlah') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="jangka_simpan" class="form-label ms-1 fs-5">{{ __('Jangka Simpan') }}</label>
                 <input id="jangka_simpan" name="jangka_simpan" type="text" class="form-control" placeholder="" required>
-                <label for="jangka_simpan" class="form-label">{{ __('Jangka Simpan') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="metode_perlindungan" class="form-label ms-1 fs-5">{{ __('Metode Perlindungan') }}</label>
                 <input id="metode_perlindungan" name="metode_perlindungan" type="text" class="form-control" placeholder="" required>
-                <label for="metode_perlindungan" class="form-label">{{ __('Metode Perlindungan') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="lokasi_simpan" class="form-label ms-1 fs-5">{{ __('Lokasi Simpan') }}</label>
                 <input id="lokasi_simpan" name="lokasi_simpan" type="text" class="form-control" placeholder="" required>
-                <label for="lokasi_simpan" class="form-label">{{ __('Lokasi Simpan') }}</label>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="keterangan" class="form-label ms-1 fs-5">{{ __('Keterangan') }}</label>
                 <textarea id="keterangan" name="keterangan" class="form-control" placeholder="" style="height: 8.3rem"></textarea>
-                <label for="keterangan" class="form-label">{{ __('Keterangan') }}</label>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="file" class="form-label ms-1 fs-5">{{ __('Upload File (PDF)') }}</label>
                 <input class="form-control" type="file" id="file" name="file" accept=".pdf" required>
-                <label for="file" class="form-label">{{ __('Upload Files (PDF)') }}</label>
+                <span class="form-text fs-6 ms-1 text-muted">
+                  File yang diupload harus berformat PDF berukuran maksimal 50MB.
+                </span>
               </div>
-              <div class="form-floating mb-3 col-12">
+              <div class="mb-3 col-12">
+                <label for="file_preview" class="form-label ms-1 fs-5">{{ __('Preview File') }}</label>
                 <div id="pdf-viewer-input" class="form-control" style="height: 17.5rem; overflow:auto"></div>
-                <label for="file_preview" class="form-label">{{ __('Preview File') }}</label>
               </div>
             </div>
           </div>
