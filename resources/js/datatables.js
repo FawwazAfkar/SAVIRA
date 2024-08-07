@@ -433,7 +433,7 @@ $(document).ready(function() {
     $('#dataarsip').DataTable(
         {
             dom:
-                "<'row align-items-center justify-content-between'<'col-md-6 mb-3'B><'col-md-3 mb-3'f>>" + // Top left: Buttons | Top right: Search
+                "<'row' <'col-md-6'B> <'col-md-6' <'row' <'col-12'f> <'col-12 mb-3 d-flex justify-content-end' <'column-filter'> > > > >" +
                 "<'row'<'col-12 mb-3'tr>>" +                                        // Table
                 "<'row'<'col-md-6 mb-3'<'d-flex justify-content-start'l>><'col-md-6 mb-3'<'d-flex justify-content-end'p>>", // Bottom left: Page length | Bottom right: Pagination
             buttons: [
@@ -621,10 +621,15 @@ $(document).ready(function() {
                     titleAttr: 'Toggle column visibility'
                 }
             ],
+
             info: false,
             ordering: true,
-
-            searchClass: 'form-control',
+            responsive: true,
+            scrollX: true,
+            columnDefs: [
+                { responsivePriority: 1, targets: 0 },
+                { responsivePriority: 2, targets: -1 }
+            ],
 
             language: {
                 search: '<span class="visually-hidden"></span> _INPUT_',
@@ -642,12 +647,29 @@ $(document).ready(function() {
                 }
             },
 
-            responsive: true,
-            columnDefs: [
-                { responsivePriority: 1, targets: 0 },
-                { responsivePriority: 2, targets: -1 }
-            ],
-            scrollX: true,
+            initComplete: function () {
+                if (userRole === 'spadmin') {
+                    var api = this.api();
+                    var column = api.column(10); // Adjust the column index as needed
+                    var select = $('<select><option value="">Filter Unit Kerja</option></select>')
+                        .appendTo($('.column-filter'))
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                        });
+
+                    var resetButton = $('<button class="btn btn-secondary" type="button">Reset</button>')
+                    .appendTo($('.column-filter'))
+                    .on('click', function () {
+                        select.val(''); // Reset the select element
+                        column.search('', true, false).draw(); // Reset the column filter
+                    });
+        
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>');
+                    });
+                }
+            }            
         }
     );
 });

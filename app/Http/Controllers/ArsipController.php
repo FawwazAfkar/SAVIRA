@@ -28,7 +28,7 @@ class ArsipController extends Controller
         if($request->has('file')) {
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/arsipvital', $fileName);
+            $file->storeAs('arsipvital', $fileName, 'private');
         }else{
             $fileName = null;
         }
@@ -61,17 +61,17 @@ class ArsipController extends Controller
             'keterangan' => 'nullable|string',
         ]);
 
-        $arsip = ArsipVital::find($id);
+        $arsip = ArsipVital::findOrFail($id);
 
         // file handling if file is not null, delete the old file if exist on storage
         if ($request->file('file')) {
             if ($arsip->file) {
-                Storage::delete('public/arsipvital/' . $arsip->file);
+                Storage::disk('private')->delete('arsipvital/' . $arsip->file);
             }
 
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/arsipvital', $fileName);            
+            $file->storeAs('arsipvital', $fileName, 'private');          
         } else {
             $fileName = $arsip->file;
         }
@@ -87,13 +87,41 @@ class ArsipController extends Controller
     // delete arsip by id
     public function destroy($id)
     {
-        $arsip = ArsipVital::find($id);
+        $arsip = ArsipVital::findOrFail($id);
         if ($arsip->file) {
-            Storage::delete('public/arsipvital/' . $arsip->file);
+            Storage::disk('private')->delete('arsipvital/' . $arsip->file);
         }
         ArsipVital::destroy($id);
 
         return redirect()->route('daftar-arsip')
             ->with('success', 'Arsip berhasil dihapus.');
+    }
+
+
+    // view arsip file by id (authorized only)
+    public function view($id)
+    {
+        $arsip = ArsipVital::findOrFail($id);
+        $filePath = 'arsipvital/' . $arsip->file;
+
+        if (Storage::disk('private')->exists($filePath)) {
+            $file = Storage::disk('private')->get($filePath);
+            return response($file, 200)->header('Content-Type', 'application/pdf');
+        }
+
+        return abort(404, 'File not found.');
+    }
+
+    // download arsip file by id (authorized only)
+    public function download($id)
+    {
+        $arsip = ArsipVital::findOrFail($id);
+        $filePath = 'arsipvital/' . $arsip->file;
+
+        if (Storage::disk('private')->exists($filePath)) {
+            return response()->download(storage_path('app/private/' . $filePath), $arsip->file);
+        }
+
+        return abort(404, 'File not found.');
     }
 }

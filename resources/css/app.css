@@ -56,3 +56,24 @@ body:not(.login-page) .home-section{
   text-decoration: none; 
   color: whitesmoke;
 }
+
+
+/* Datatable JS Filter */
+.column-filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.column-filter select {
+  width: 60%; /* Adjust as needed */
+  height: 1.8rem;
+  white-space: nowrap;
+  display: inline-block;
+  border: 1px solid #ced4da;
+  background-color: aliceblue;
+}
+
+.column-filter button {
+  margin: 5px 0 10px 5px;
+}

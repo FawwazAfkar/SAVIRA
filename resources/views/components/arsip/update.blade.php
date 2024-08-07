@@ -1,6 +1,6 @@
 @props(['arsip'])
 <!-- Update Modal -->
-<div class="modal fade" id="updateArsip{{ $arsip->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" data-file-url="{{ asset('storage/arsipvital/' . $arsip->file) }}">
+<div class="modal fade" id="updateArsip{{ $arsip->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true" data-file-url="{{ route('arsip.view', $arsip->id) }}">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">

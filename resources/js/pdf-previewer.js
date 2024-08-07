@@ -15,22 +15,28 @@ document.addEventListener('DOMContentLoaded', function() {
             // Render all pages
             for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
                 pdf.getPage(pageNum).then(function(page) {
-                    var scale = container.clientWidth / page.getViewport({ scale: 1.1 }).width;
-                    var viewport = page.getViewport({ scale: scale });
+                    var viewport = page.getViewport({ scale: 1.1 });
+                    var scale = container.clientWidth / viewport.width;
+                    var highResScale = scale * 3;
+                    var highResViewport = page.getViewport({ scale: highResScale });
+
                     var canvas = document.createElement('canvas');
                     var context = canvas.getContext('2d');
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
+                    canvas.width = highResViewport.width;
+                    canvas.height = highResViewport.height;
                     container.appendChild(canvas);
 
                     var renderContext = {
                         canvasContext: context,
-                        viewport: viewport
+                        viewport: highResViewport,
                     };
                     var renderTask = page.render(renderContext);
                     renderTask.promise.then(function() {
                         console.log('Page ' + pageNum + ' rendered');
                     });
+
+                    canvas.style.width = '100%';
+                    canvas.style.height = 'auto';
                 });
             }
         }, function(reason) {
@@ -100,6 +106,22 @@ document.addEventListener('DOMContentLoaded', function() {
         var modal = event.target;
         var fileId = modal.id.split('updateArsip').pop();
         var pdfViewer = document.getElementById('pdf-viewer-update_' + fileId);
+        var currentFileUrl = modal.dataset.fileUrl;
+
+        if (pdfViewer && currentFileUrl) {
+            fetch(currentFileUrl)
+                .then(response => response.arrayBuffer())
+                .then(pdfData => {
+                    renderPDF(pdfData, pdfViewer);
+                });
+        }
+    });
+
+    // Preview of the current file when the modal is shown
+    document.addEventListener('shown.bs.modal', function(event) {
+        var modal = event.target;
+        var fileId = modal.id.split('viewArsip').pop();
+        var pdfViewer = document.getElementById('pdf-viewer-view_' + fileId);
         var currentFileUrl = modal.dataset.fileUrl;
 
         if (pdfViewer && currentFileUrl) {

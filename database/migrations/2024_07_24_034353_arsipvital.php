@@ -14,7 +14,7 @@ return new class extends Migration
         //create arsip vital table
         Schema::create('arsip_vitals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('instansi_id')->constrained()->onDelete('cascade');
+            $table->foreignId('instansi_id')->constrained()->onDelete('restrict');
             $table->string('jenis_arsip')->nullable(false);
             $table->string('tingkat_perkembangan')->nullable(false);
             $table->string('kurun_waktu')->nullable(false);

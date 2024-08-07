@@ -1,6 +1,6 @@
 @props(['arsip', 'show' => false])
   <!-- Modal -->
-<div class="modal fade" id="viewArsip{{ $arsip->id }}" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="viewArsip{{ $arsip->id }}" tabindex="-1" aria-hidden="true" data-file-url="{{ route('arsip.view', $arsip->id) }}">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,13 +10,7 @@
             <div class="modal-body">
                 <div class="row g-3">
                     <div class="col-5 d-flex align-items-center justify-content-center">
-                        <embed id="viewer" src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" class="object-fit-cover" style="width: 100%; height:100%">
-                        {{--
-                        <iframe src="{{ asset('storage/arsipvital/'.$arsip->file) }}" id="viewer" class="" style="height: 30rem;"></iframe>
-                        {{-- <div style="overflow: hidden; width: 80%; height: 100%;">
-                            <embed src="{{ asset('storage/arsipvital/'.$arsip->file) }}" type="application/pdf" class="img-fluid" style="height: 100%; width: 100%;">
-                        </div> 
-                        --}}
+                        <div id="pdf-viewer-view_{{ $arsip->id }}" class="form-control" style="height: 24rem; overflow:auto"></div>
                     </div>
                     <div class="col-4">
                         <div class="row">
@@ -52,8 +46,8 @@
                         <div class="row">
                             <div class="col">
                                 <h5>Aksi</h5>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" target="_blank">Lihat Arsip</a>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ asset('/storage/arsipvital/'.$arsip->file) }}" download>Download</a>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.view', $arsip->id) }}" target="_blank">Lihat Arsip</a>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}" download>Download</a>
                             </div>
                         </div>
                     </div>

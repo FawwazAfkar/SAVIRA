@@ -89,4 +89,9 @@
         </div>
     </div>
 </div>
+
+{{-- Send role for filtering (Super Admin only) --}}
+<script>
+    var userRole = "{{ Auth::user()->role }}";
+</script>
 @endsection
