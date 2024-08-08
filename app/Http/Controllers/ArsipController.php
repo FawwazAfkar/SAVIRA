@@ -124,4 +124,11 @@ class ArsipController extends Controller
 
         return abort(404, 'File not found.');
     }
+
+    // get arsip data by id (for PDF)
+    public function getData($id)
+    {
+        $arsip = ArsipVital::findOrFail($id);
+        return response()->json($arsip);
+    }
 }

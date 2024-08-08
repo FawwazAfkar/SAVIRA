@@ -93,5 +93,6 @@
 {{-- Send role for filtering (Super Admin only) --}}
 <script>
     var userRole = "{{ Auth::user()->role }}";
+    var instansi = "{{ Auth::user()->instansi->nama_instansi }}";
 </script>
 @endsection

@@ -1,6 +1,7 @@
 import { auto } from '@popperjs/core';
 import { logoBase64 } from './constant.js';
 
+// Data table for User's Table
 $(document).ready(function() {
     var today = new Date();
     var formattedDate = today.getFullYear() + 
@@ -211,6 +212,7 @@ $(document).ready(function() {
     );
 });
 
+// Data table for Instansi's Table
 $(document).ready(function() {
     var today = new Date();
     var formattedDate = today.getFullYear() + 
@@ -509,10 +511,162 @@ $(document).ready(function() {
                     text: 'Excel',
                     className: 'btn btn-success',
                     filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
-                    title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
+                    title: '',
                     exportOptions: {
                         columns: ':visible:not(:last-child)'
                     },
+                    customize: function (xlsx) {
+                        var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                        var downrows = 4;
+                        var clRow = $('row', sheet);
+
+                        clRow.each(function () {
+                            var attr = $(this).attr('r');
+                            var ind = parseInt(attr);
+                            ind = ind + downrows;
+                            $(this).attr("r", ind);
+                        });
+
+                        $('row c ', sheet).each(function () {
+                            var attr = $(this).attr('r');
+                            var pre = attr.substring(0, 1);
+                            var ind = attr.substring(1, attr.length);
+                            ind = parseInt(ind) + downrows;
+                            $(this).attr("r", pre + ind);
+                        });
+
+                        function Addrow(index, data) {
+                            var row = '<row r="' + index + '">';
+                            for (var i = 0; i < data.length; i++) {
+                                var key = data[i].k;
+                                var value = data[i].v;
+                                row += '<c t="inlineStr" r="' + key + index + '" s="51">';
+                                row += '<is>';
+                                row += '<t>' + value + '</t>';
+                                row += '</is>';
+                                row += '</c>';
+                            }
+                            row += '</row>';
+                            return row;
+                        }
+
+                        var rows = [];
+                        rows.push(Addrow(1, [{ k: 'A', v: 'DAFTAR ARSIP VITAL' }]));
+                        rows.push(Addrow(2, [{ k: 'A', v: instansi.toUpperCase() }]));
+                        rows.push(Addrow(3, [{ k: 'A', v: '' }]));
+                        rows.push(Addrow(4, [{ k: 'A', v: 'Unit Pengolah : ' }]));
+
+                        sheet.childNodes[0].childNodes[1].innerHTML = rows.join('') + sheet.childNodes[0].childNodes[1].innerHTML;
+
+                        // Merge cells for header
+                        function mergeCells(sheet, start, end) {
+                            var mergeCells = sheet.getElementsByTagName('mergeCells')[0];
+                            var newMergeCell = sheet.createElement('mergeCell');
+                            newMergeCell.setAttribute('ref', start + ':' + end);
+                            mergeCells.appendChild(newMergeCell);
+                        }
+
+                        mergeCells(sheet, 'A1', 'K1');
+                        mergeCells(sheet, 'A2', 'K2');
+                        mergeCells(sheet, 'A3', 'K3');
+                        mergeCells(sheet, 'A4', 'K4');
+
+                        // Styling Header
+                        function applystyle(cellRef, styleIndex) {
+                            $('c[r="' + cellRef + '"]', sheet).attr('s', styleIndex);
+                        }
+
+                        // Adding custom styles to the styles.xml
+                        var stylesXml = xlsx.xl['styles.xml'];
+                        var styleSheet = $('styleSheet', stylesXml);
+                        
+                        // Define the new xf style
+                        var newXf1 = `
+                            <xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+                                <alignment horizontal="center" wrapText="1"/>
+                            </xf>`;
+                        
+                        var newXf2 = `
+                            <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1">
+                                <alignment horizontal="left" vertical="center" wrapText="1"/>
+                            </xf>`;
+                        
+                        styleSheet.find('cellXfs').append(newXf1);
+                        styleSheet.find('cellXfs').append(newXf2);
+
+                        // The new style's index will be the last one in the list
+                        var xfHeader = styleSheet.find('cellXfs xf').length - 2;
+                        var xfBody = styleSheet.find('cellXfs xf').length - 1;
+
+                        // Apply the new style
+                        ['A1', 'A2', 'A3'].forEach(function (cell) {
+                            applystyle(cell, xfHeader);
+                        });
+                        applystyle('A4', 2);
+
+                        // Apply xfBody style to all cells in the sheet
+                        clRow = $('row', sheet);
+                        clRow.each(function () {
+                            var attr = $(this).attr('r');
+                            if (parseInt(attr) > 4) {
+                                $('c', this).attr('s', xfBody);
+                            }
+                        })
+
+                        // Add signature box
+                        var lastRow = $('row', sheet).last().attr('r');
+                        var nextRow = parseInt(lastRow) + 3; // Leave one empty row before the signature box
+
+                        // Content of the signature box
+                        var rowsContent = [
+                            'Kepala ' + instansi,
+                            '',
+                            '',
+                            '',
+                            'Nama',
+                            'NIP'
+                        ];
+    
+                        // Create and append the signature box
+                        rowsContent.forEach(function (content, index) {
+                            var rowIndex = nextRow + index;
+                            var row = '<row r="' + rowIndex + '">';
+
+                            if (userRole === 'spadmin') {
+                                for (var i = 0; i < 11; i++) {
+                                    var colRef = String.fromCharCode(65 + i) + rowIndex;
+                                    if (i === 8) {
+                                        row += '<c t="inlineStr" r="' + colRef + '" s="51"><is><t>' + content + '</t></is></c>';
+                                    } else {
+                                        row += '<c t="inlineStr" r="' + colRef + '"><is><t></t></is></c>';
+                                    }
+                                }
+                                row += '</row>';
+                                
+                                // Append the signature box to the worksheet
+                                $('sheetData', sheet).append(row);
+    
+                                mergeCells(sheet, 'I' + rowIndex, 'K' + rowIndex);
+                            } else {
+                                for (var i = 0; i < 10; i++) {
+                                    var colRef = String.fromCharCode(65 + i) + rowIndex;
+                                    if (i === 7) {
+                                        row += '<c t="inlineStr" r="' + colRef + '" s="51"><is><t>' + content + '</t></is></c>';
+                                    } else {
+                                        row += '<c t="inlineStr" r="' + colRef + '"><is><t></t></is></c>';
+                                    }
+                                }
+                                row += '</row>';
+                                
+                                // Append the signature box to the worksheet
+                                $('sheetData', sheet).append(row);
+    
+                                mergeCells(sheet, 'H' + rowIndex, 'J' + rowIndex);
+                            }
+
+                            
+                        });
+                    }
                 },
                 {
                     extend: 'pdfHtml5',
@@ -564,53 +718,26 @@ $(document).ready(function() {
                         doc.content.splice(0, 0, {
                             columns: [
                                 {   
-                                    width: '20%',
-                                    image: logoBase64,
-                                    fit: [120, 120],
-                                    margin: [50, 0, 0, 0] // margins(ltrb)
-                                },
-                                {   
                                     width: '*',
                                     stack: [
-                                        { text: '\n', fontSize: 20, bold: true, alignment: 'center' },
-                                        { text: 'PEMERINTAH KABUPATEN BANYUMAS', fontSize: 16, bold: true, alignment: 'center' },
-                                        { text: 'DINAS ARSIP DAN PERPUSTAKAAN DAERAH', fontSize: 18, bold: true, alignment: 'center' },
-                                        { text: 'Jalan Jenderal Gatot Subroto Nomor.85, Purwokerto, Banyumas, Kode Pos 53116', fontSize: 11, alignment: 'center' },
-                                        { text: 'Telepon (0281) 636115, Faksimile (0281) 636225', fontSize: 11, alignment: 'center' },
-                                        { text: 'Website : www.dinarpus.banyumaskab.go.id, E-mail : arpusdabanyumas@gmail.com', fontSize: 11, alignment: 'center', color: 'blue' }
+                                        { text: 'DAFTAR ARSIP VITAL', fontSize: 16, bold: true, alignment: 'center' },
+                                        { text: instansi.toUpperCase(), fontSize: 18, bold: true, alignment: 'center' },
                                     ],
-                                    margin: [0, 0, 20, 0] // Margin bawah setelah kop
                                 }
                             ],
-                            columnGap: 0 // Jarak antara logo dan teks
                         });
-                        // Garis bawah pertama
+
                         doc.content.splice(1, 0, {
-                            canvas: [{
-                                type: 'line',
-                                x1: 0,
-                                y1: 0,
-                                x2: 841 - 80, // Mengatur panjang garis agar mencapai tepi kertas lanskap
-                                y2: 0,
-                                lineWidth: 1.5 // Tebal garis pertama
-                            }]
+                            columns: [
+                                {
+                                    stack: [
+                                        { text: '\n', fontSize: 12, bold: false, alignment: 'left' },
+                                        { text: 'Unit Pengolah : ', fontSize: 12, bold: true, alignment: 'left' },
+                                    ],
+                                }
+                            ]
                         });
-
-                        // Garis bawah kedua
-                        doc.content.splice(2, 0, {
-                            canvas: [{
-                                type: 'line',
-                                x1: 0,
-                                y1: 2, // Jarak antara garis pertama dan kedua
-                                x2: 841 - 80, // Mengatur panjang garis agar mencapai tepi kertas lanskap
-                                y2: 2,
-                                lineWidth: 0.75 // Tebal garis kedua lebih tipis
-                            }],
-                            margin: [0, 0, 0, 12] // Margin bawah untuk memberi ruang sebelum tabel dimulai
-                        });
-
-                        //menghapus judul "Data Arsip" dari pdf
-                        doc.content.splice(3, 1);
+                        doc.content.splice(2, 1);
 
                     }
                 },

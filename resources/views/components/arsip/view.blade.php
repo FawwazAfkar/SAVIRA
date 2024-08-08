@@ -1,5 +1,5 @@
 @props(['arsip', 'show' => false])
-  <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="viewArsip{{ $arsip->id }}" tabindex="-1" aria-hidden="true" data-file-url="{{ route('arsip.view', $arsip->id) }}">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -47,7 +47,9 @@
                             <div class="col">
                                 <h5>Aksi</h5>
                                 <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.view', $arsip->id) }}" target="_blank">Lihat Arsip</a>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}" download>Download</a>
+                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}">Download File Arsip</a>
+                                <a class="btn btn-dark btnlink text-center mb-2 download-kartu" href="#" data-id="{{ $arsip->id }}" data-instansi-id="{{ $arsip->instansi_id }}">Download Kartu Pendataan</a>
+
                             </div>
                         </div>
                     </div>
@@ -85,16 +87,3 @@
         </div>
     </div>
 </div>
-<!-- End Modal -->
-{{-- <script>
-    $(document).ready(function() {
-        const viewer = document.getElementById('viewer');
-        viewer.onload = function() {
-            const pdf = viewer.contentDocument;
-            const page = pdf.querySelector('.page');
-            const viewport = page.getClientRects()[0];
-            const scale = viewer.clientHeight / viewport.height;
-            page.style.transform = `scale(${scale})`;
-        };
-    });
-</script> --}}
