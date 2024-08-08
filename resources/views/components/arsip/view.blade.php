@@ -8,76 +8,155 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="row g-3">
-                    <div class="col-5 d-flex align-items-center justify-content-center">
-                        <div id="pdf-viewer-view_{{ $arsip->id }}" class="form-control" style="height: 24rem; overflow:auto"></div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Jenis Arsip</h5>
-                                <p>{{ $arsip->jenis_arsip }}</p>
-                            </div>
+            <div class="row mb-4">
+                <div class="col-md-8 modal-table">
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Instansi</h5>
                         </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Kurun Waktu</h5>
-                                <p>{{ $arsip->kurun_waktu }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Jumlah</h5>
-                                <p>{{ $arsip->jumlah }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Metode Perlindungan</h5>
-                                <p>{{ $arsip->metode_perlindungan }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Keterangan</h5>
-                                <p>{{ $arsip->keterangan }}</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <h5>Aksi</h5>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.view', $arsip->id) }}" target="_blank">Lihat Arsip</a>
-                                <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}">Download File Arsip</a>
-                                <a class="btn btn-dark btnlink text-center mb-2 download-kartu" href="#" data-id="{{ $arsip->id }}" data-instansi-id="{{ $arsip->instansi_id }}">Download Kartu Pendataan</a>
-
-                            </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->instansi->nama_instansi }}</p>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Tingkat Perkembangan</h5>
-                                <p>{{ $arsip->tingkat_perkembangan }}</p>
-                            </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Unit Pengolah</h5>
                         </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Jangka Simpan</h5>
-                                <p>{{ $arsip->jangka_simpan }}</p>
-                            </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->unit_pengolah }}</p>
                         </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Lokasi Simpan</h5>
-                                <p>{{ $arsip->lokasi_simpan }}</p>
-                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Jenis Arsip</h5>
                         </div>
-                        <div class="row">
-                            <div class="col ">
-                                <h5>Waktu Update</h5>
-                                <p><small class="text-body-secondary">{{ $arsip->updated_at }}</small></p>
-                            </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->jenis_arsip }}</p>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Media Simpan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->media }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Sarana Temu Kembali</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->sarana_temu_kembali }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Volume/Jumlah</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->jumlah }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Periode (Kurun Waktu)</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->kurun_waktu }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Retensi/Masa Simpan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->jangka_simpan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Tingkat Keaslian</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->tingkat_perkembangan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Sifat Kerahasiaan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->sifat_kerahasiaan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Lokasi Simpan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->lokasi_simpan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Sarana Simpan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->sarana_simpan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Metode Perlindungan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->metode_perlindungan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Berita Acara</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->berita_acara }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Keterangan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->keterangan }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Nama Pendata</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->nama_pendata }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mth">
+                            <h5>Waktu Pendataan</h5>
+                        </div>
+                        <div class="col mtc">
+                            <p>{{ $arsip->waktu_pendataan}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <h5>Preview Arsip</h5>
+                        <div id="pdf-viewer-view_{{ $arsip->id }}" class="form-control" style="height: 25rem; overflow:auto"></div>
+                    </div>
+                    <div class="row action">
+                        <h5>Aksi</h5>
+                        <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.view', $arsip->id) }}" target="_blank">Lihat Arsip</a>
+                        <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}" download>Download</a>
+                        <a class="btn btn-dark btnlink text-center mb-2 download-kartu" href="#" data-id="{{ $arsip->id }}" data-instansi-id="{{ $arsip->instansi_id }}">Download Kartu Pendataan</a>
                     </div>
                 </div>
             </div>

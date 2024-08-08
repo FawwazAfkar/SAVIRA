@@ -1,6 +1,7 @@
 /* Other Css */
 @import url(./sidebar.css);
 @import url(./navbar.css);
+@import url(./footer.css);
 
 /* for layout app css */
 *{
@@ -34,7 +35,6 @@ body:not(.login-page) .main-content {
 body:not(.login-page) .home-section{
   position: relative;
   top: 100;
-  background: rgb(255,255,255);
   background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
   background-attachment: fixed;
   min-height: 100vh;
@@ -59,23 +59,61 @@ body:not(.login-page) .home-section{
   color: whitesmoke;
 }
 
+/*search*/
+input[type="search"] {
+  height: 2rem;
+}
 
 /* Datatable JS Filter */
 .column-filter {
   display: flex;
   align-items: center;
   justify-content: flex-end; /* Align items to the right */
+  margin: 5px 0;
 }
 
 .column-filter select {
   width: 60%; /* Adjust as needed */
-  height: 1.8rem;
+  height: 2rem;
   white-space: nowrap;
   display: inline-block;
   border: 1px solid #ced4da;
   background-color: aliceblue;
+  margin: 5px 5px 5px 0;
+  padding-top: 0.2rem;
+  padding-bottom: 0; 
+  text-overflow: ellipsis;
 }
 
 .column-filter button {
-  margin: 5px 0 10px 5px;
+  margin: 5px 0 5px 5px;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+.modal-table{
+  border-radius: 10px;
+
+}
+.modal-table .row .col{
+  border-bottom: #e5e8eb 1px solid;
+  padding-top: 0.2rem;
+}
+.modal-table .row .col.mth{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  
+}
+.modal-table .row .col.mtc{
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  align-items: center;
+  background-color: #ffffff;
+}
+.modal-table .row.action{
+  border-bottom: none;
 }

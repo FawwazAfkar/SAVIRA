@@ -22,7 +22,13 @@ class ArsipVital extends Model
         'lokasi_simpan',
         'file',
         'keterangan',
-        
+        'berita_acara',
+        'unit_pengolah',
+        'sarana_temu_kembali',
+        'sifat_kerahasiaan',
+        'sarana_simpan',
+        'nama_pendata',
+        'waktu_pendataan',
     ];
 
     public function instansi()

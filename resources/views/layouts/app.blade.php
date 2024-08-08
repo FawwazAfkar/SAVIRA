@@ -46,8 +46,9 @@
                 <main class="main-content">
                     @yield('content')
                 </main>
-            </div>
+        </div>
         </section>
+        <x-footer />
     </div>  
 
     <!-- Bootstrap Scripts -->

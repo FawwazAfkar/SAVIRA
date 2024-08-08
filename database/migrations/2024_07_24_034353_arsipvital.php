@@ -25,6 +25,13 @@ return new class extends Migration
             $table->string('lokasi_simpan')->nullable(false);
             $table->string('file')->nullable();
             $table->text('keterangan')->nullable();
+            $table->string('berita_acara')->nullable();
+            $table->string('unit_pengolah')->nullable(false);
+            $table->string('sarana_temu_kembali')->nullable(false);
+            $table->string('sifat_kerahasiaan')->nullable(false);
+            $table->string('sarana_simpan')->nullable(false);
+            $table->string('nama_pendata')->nullable(false);
+            $table->string('waktu_pendataan')->nullable();
             $table->timestamps();
         });
     }

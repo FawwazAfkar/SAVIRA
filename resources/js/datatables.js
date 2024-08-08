@@ -773,12 +773,17 @@ $(document).ready(function() {
                     }
                 }
             },
-
+            rowCallback: function(row, data, index) {
+                // Update the numbering for each row
+                var table = $('#dataarsip').DataTable();
+                var pageInfo = table.page.info();
+                $('td:eq(0)', row).html(pageInfo.start + index + 1);
+            },
             initComplete: function () {
                 if (userRole === 'spadmin') {
                     var api = this.api();
                     var column = api.column(10); // Adjust the column index as needed
-                    var select = $('<select><option value="">Filter Unit Kerja</option></select>')
+                    var select = $('<select class="form-select"><option value="">Filter Unit Kerja</option></select>')
                         .appendTo($('.column-filter'))
                         .on('change', function () {
                             var val = $.fn.dataTable.util.escapeRegex($(this).val());
@@ -796,7 +801,7 @@ $(document).ready(function() {
                         select.append('<option value="' + d + '">' + d + '</option>');
                     });
                 }
-            }            
+            }
         }
     );
 });

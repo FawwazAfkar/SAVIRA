@@ -1,0 +1,13 @@
+.footer {
+    font-family: monospace;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(42, 59, 92, 0.5);
+    color: #fff;
+    padding-top: 15px;
+    padding-left: 78px;
+    text-align: end;
+}

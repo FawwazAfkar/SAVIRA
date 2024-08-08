@@ -36,6 +36,7 @@
     flex-direction: column;
     width: 100%;
     text-wrap: nowrap;
+    pointer-events: none;
   }
   .sidebar.close .logo-details .logo_text{
     position: relative;
@@ -72,7 +73,7 @@
   }
   .sidebar .nav-links{
     height: 100%;
-    padding: 40px 0 150px 0;
+    padding: 25px 0 150px 0;
     overflow: auto;
   }
   .sidebar.close .nav-links{
@@ -209,7 +210,7 @@
   }
   .sidebar .profile-details .profile_name,
   .sidebar .profile-details .job{
-    cursor: pointer;
+    pointer-events: none;
     color: #fff;
     transition: all 0.3s ease;
     margin-left: 10px;
@@ -232,10 +233,8 @@
   }
   .sidebar.close .profile-details .profile_name,
   .sidebar.close .profile-details .job{
-    max-width: 0;
+    max-width: 220px;
     opacity: 0;
-    transition: all 0.3s ease;
-    transition-delay: 0s;
   }
   .sidebar .profile-details .logoutbtn{
     position: relative;
