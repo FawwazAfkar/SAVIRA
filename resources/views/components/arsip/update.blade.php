@@ -12,7 +12,7 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3 col-12">
                                 <label for="jenis_arsip" class="form-label ms-1 fs-5">{{ __('Jenis Arsip') }}</label>
                                 <input id="jenis_arsip" name="jenis_arsip" type="text" class="form-control" placeholder="" value="{{ $arsip->jenis_arsip }}" required>
@@ -46,10 +46,36 @@
                                 <input id="lokasi_simpan" name="lokasi_simpan" type="text" class="form-control" placeholder="" value="{{ $arsip->lokasi_simpan }}" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <div class="mb-3 col-12">
+                              <label for="unit_pengolah" class="form-label ms-1 fs-5">{{ __('Unit Pengolah') }}</label>
+                              <input id="unit_pengolah" name="unit_pengolah" type="text" class="form-control" placeholder="" value="{{ $arsip->unit_pengolah }}" required>
+                            </div>
+                            <div class="mb-3 col-12">
+                              <label for="sarana_temu_kembali" class="form-label ms-1 fs-5">{{ __('Sarana Temu Kembali') }}</label>
+                              <input id="sarana_temu_kembali" name="sarana_temu_kembali" type="text" class="form-control" placeholder="" value="{{ $arsip->sarana_temu_kembali }}" required>
+                            </div>
+                            <div class="mb-3 col-12">
+                              <label for="sifat_kerahasiaan" class="form-label ms-1 fs-5">{{ __('Sifat Kerahasiaan') }}</label>
+                              <input id="sifat_kerahasiaan" name="sifat_kerahasiaan" type="text" class="form-control" placeholder="" value="{{ $arsip->sifat_kerahasiaan }}" required>
+                            </div>
+                            <div class="mb-3 col-12">
+                              <label for="sarana_simpan" class="form-label ms-1 fs-5">{{ __('Sarana Simpan') }}</label>
+                              <input id="sarana_simpan" name="sarana_simpan" type="text" class="form-control" placeholder="" value="{{ $arsip->sarana_simpan }}" required>
+                            </div>
+                            <div class="mb-3 col-12">
+                              <label for="nama_pendata" class="form-label ms-1 fs-5">{{ __('Nama Pendata') }}</label>
+                              <input id="nama_pendata" name="nama_pendata" type="text" class="form-control" placeholder="" value="{{ $arsip->nama_pendata }}" required>
+                            </div>
+                            <div class="mb-3 col-12">
+                              <label for="berita_acara" class="form-label ms-1 fs-5">{{ __('Berita Acara') }}</label>
+                              <input id="berita_acara" name="berita_acara" type="text" class="form-control" placeholder="" value="{{ $arsip->berita_acara }}">
+                            </div>
+                          </div>
+                        <div class="col-md-4">
                             <div class="mb-3 col-12">
                                 <label for="keterangan" class="form-label ms-1 fs-5">{{ __('Keterangan') }}</label>
-                                <textarea id="keterangan" name="keterangan" class="form-control" placeholder="" style="height: 8.3rem">{{ $arsip->keterangan }}</textarea>
+                                <textarea id="keterangan" name="keterangan" class="form-control" placeholder="" style="height: 8rem">{{ $arsip->keterangan }}</textarea>
                             </div>
                             <div class="mb-3 col-12">
                                 <label for="file_update_{{ $arsip->id }}" class="form-label ms-1 fs-5">{{ __('Upload File (PDF)') }}</label>

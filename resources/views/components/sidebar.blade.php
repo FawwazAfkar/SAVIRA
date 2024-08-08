@@ -1,17 +1,18 @@
 <div class="sidebar close">
 
     <div class="logo-details">
-      <div class="logo_icon"><x-nav-logo /></div>
+      <a href="{{ route('home') }}">
+        <div class="logo_icon"><x-nav-logo /></div>
+      </a>
       <div class="logo_text">
         <span class="logo_name">SAVIRA</span>
         <span class="logo_desc">Sistem Penyimpanan Arsip Vital Regional <br> Banyumas</span>
       </div>
     </div>
-    
     <ul class="nav-links">
       <li>
         <a href="{{ route('home') }}">
-          <i class='bx bx-grid-alt' ></i>
+          <i class='bx bxs-dashboard'></i>
           <span class="link_name">Dashboard</span>
         </a>
         <ul class="sub-menu blank">

@@ -1,11 +1,15 @@
 <nav class="navbar navbar-expand-md navbar-white bg-white"> 
     <div class="container-fluid">
         <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav me-auto d-flex align-items-center"> 
-                <a class="title" href="{{ url('/home') }}">
-                {{ __('SAVIRA') }}
-                </a>
-                <div>
+            <ul class="navbar-nav me-auto"> 
+                <li class="nav-item">
+                    <i class='bx bx-menu' id="menu-btn" ></i>
+                </li>
+                <li class="nav-item">
+                    <a class="title" href="{{ url('/home') }}">
+                        {{ __('SAVIRA') }}
+                    </a>
+                </li>
             </ul>
         <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto">
@@ -19,6 +23,5 @@
                     </div>
                 </li>
             </ul>
-        </div>
     </div>
 </nav>

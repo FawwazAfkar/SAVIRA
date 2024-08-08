@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ArsipVital;
+use Illuminate\Support\Carbon;
 
 class ArsipController extends Controller
 {
@@ -20,6 +21,12 @@ class ArsipController extends Controller
             'jangka_simpan' => 'required|string|max:255',
             'metode_perlindungan' => 'required|string|max:255',
             'lokasi_simpan' => 'required|string|max:255',
+            'unit_pengolah' => 'required|string|max:255',
+            'sarana_temu_kembali' => 'required|string|max:255',
+            'sifat_kerahasiaan' => 'required|string|max:255',
+            'sarana_simpan' => 'required|string|max:255',
+            'nama_pendata' => 'required|string|max:255',
+            'berita_acara' => 'nullable|string|max:255',
             'file' => 'required|mimes:pdf|max:51200',
             'keterangan' => 'nullable|string',
         ]);
@@ -33,10 +40,15 @@ class ArsipController extends Controller
             $fileName = null;
         }
 
-        // merge instansi_id with user's instansi_id and merge file name
+        // Set default value for berita_acara and keterangan if it is null
+        Carbon::setLocale('id');
         $request->merge([
+            'berita_acara' => $request->input('berita_acara') ?? '-',
+            'keterangan' => $request->input('keterangan') ?? '-',
+            'waktu_pendataan' => Carbon::now()->translatedFormat('j F Y'),
             'instansi_id' => auth()->user()->instansi_id
         ]);
+
         $arsipVital = ArsipVital::create($request->all());
         $arsipVital->file = $fileName;
         $arsipVital->save();
@@ -59,10 +71,21 @@ class ArsipController extends Controller
             'lokasi_simpan' => 'required|string|max:255',
             'file' => 'nullable|mimes:pdf|max:51200',
             'keterangan' => 'nullable|string',
+            'berita_acara' => 'nullable|string|max:255',
+            'unit_pengolah' => 'required|string|max:255',
+            'sarana_temu_kembali' => 'required|string|max:255',
+            'sifat_kerahasiaan' => 'required|string|max:255',
+            'sarana_simpan' => 'required|string|max:255',
+            'nama_pendata' => 'required|string|max:255',
+        ]);
+
+        $request->merge([
+            'berita_acara' => $request->input('berita_acara') ?? '-',
+            'keterangan' => $request->input('keterangan') ?? '-',
         ]);
 
         $arsip = ArsipVital::findOrFail($id);
-
+        
         // file handling if file is not null, delete the old file if exist on storage
         if ($request->file('file')) {
             if ($arsip->file) {
@@ -71,7 +94,7 @@ class ArsipController extends Controller
 
             $file = $request->file('file');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('arsipvital', $fileName, 'private');          
+            $file->storeAs('arsipvital', $fileName, 'private');
         } else {
             $fileName = $arsip->file;
         }
