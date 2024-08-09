@@ -48,4 +48,11 @@ class InstansiController extends Controller
                 ->with('error', 'Instansi/Unit Kerja tidak bisa dihapus karena masih ada pengguna atau arsip yang terkait.');
         }
     }
+
+    public function getInstansi($id)
+    {
+        $instansi = Instansi::find($id);
+
+        return response()->json($instansi);
+    }
 }

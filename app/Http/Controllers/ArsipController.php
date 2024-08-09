@@ -149,7 +149,7 @@ class ArsipController extends Controller
     }
 
     // get arsip data by id (for PDF)
-    public function getData($id)
+    public function getArsip($id)
     {
         $arsip = ArsipVital::findOrFail($id);
         return response()->json($arsip);

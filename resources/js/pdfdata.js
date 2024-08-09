@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(arsipData => {
                 // Fetch instansi data
-                fetch(`/instansi/${instansiId}`)
+                fetch(`/instansi/${instansiId}/data`)
                     .then(response => response.json())
                     .then(instansiData => {
-                        arsipData.instansi_name = instansiData.name;
+                        arsipData.instansi_name = instansiData.nama_instansi;
                         generateKartuPendataanPDF(arsipData);
                     })
                     .catch(error => console.error('Error fetching instansi data:', error));
