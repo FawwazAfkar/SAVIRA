@@ -21,8 +21,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.1.2/b-3.1.0/b-colvis-3.1.0/b-html5-3.1.0/b-print-3.1.0/sc-2.4.3/sp-2.3.1/datatables.min.css" rel="stylesheet">
@@ -48,7 +46,9 @@
                 </main>
         </div>
         </section>
-        <x-footer />
+        @if (Auth::user())
+            <x-footer />
+        @endif
     </div>  
 
     <!-- Bootstrap Scripts -->

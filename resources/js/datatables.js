@@ -18,7 +18,7 @@ $(document).ready(function() {
                 {   
                     // Custom Copy button ft. SweetAlert2
                     text: 'Salin',
-                    className: 'btn btn-secondary',
+                    className: 'btn btn-secondary btn-sm',
                     action: function (e, dt, button, config) {
                         var data = dt.buttons.exportData({
                             columns: config.exportOptions.columns
@@ -51,45 +51,61 @@ $(document).ready(function() {
                 {
                     extend: 'csvHtml5',
                     text: 'CSV',
-                    className: 'btn btn-info',
+                    className: 'btn btn-info btn-sm',
                     filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        customizeData: function(data) {
+                            // Update numbering for export
+                            data.body.forEach(function(row, index) {
+                                row[0] = index + 1; // Assuming the first column is for numbering
+                            });
+                        }
                     }
                 },
                 {
                     extend: 'excelHtml5',
                     text: 'Excel',
-                    className: 'btn btn-success',
+                    className: 'btn btn-success btn-sm',
                     filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        customizeData: function(data) {
+                            // Update numbering for export
+                            data.body.forEach(function(row, index) {
+                                row[0] = index + 1; // Assuming the first column is for numbering
+                            });
+                        }
                     }
                 },
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
-                    className: 'btn btn-danger',
-                    filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
-                    title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
+                    className: 'btn btn-danger btn-sm',
+                    titleAttr: 'Export to PDF',
                     orientation: 'portrait',
+                    filename: 'SAVIRA_Data_User_' + formattedDate,  // Set the filename with date
+                    title: 'SAVIRA Data User - ' + formattedDate,   // Set the title with date
                     pageSize: 'A4',
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                     },
                     customize: function(doc) {
+                        var rowCount = doc.content[1].table.body.length;
+                        for (var i = 1; i < rowCount; i++) {
+                            doc.content[1].table.body[i][0].text = i; // Assuming the first column is for numbering
+                        }
+
                         doc.defaultStyle.fontSize = 10;
                         doc.styles.tableHeader.fontSize = 12;
                         var tableBody = doc.content[1].table.body;
-                        var rowCount = tableBody.length;
-                        var columnCount = tableBody[0].length;
                         doc.content[1].margin = [0, 0, 0, 0];
-                        doc.content[1].table.widths = auto;
+                        doc.content[1].table.widths = ['5%', '20%', '20%', '10%', '45%'];
                         tableBody.forEach(function(row) {
                             row.forEach(function(cell, index) {
-                                if (index !== 1 && index !== 4) {
+                                if (index !== 1) {
                                     cell.alignment = 'center';
                                 }
                             });
@@ -100,84 +116,29 @@ $(document).ready(function() {
                         doc.content[1].table.body[0].forEach(function(header) {
                             header.fillColor = 'lightblue';
                         });
+
                         //add vertical and horizontal line between each columns and rows
                         doc.content[1].layout = 'lightHorizontalLines';
                         doc.content[1].layout = 'lightVerticalLines';
 
-                        //mengatur teks pada sel agar berada di tengah secara vertikal
-                        doc.content[1].table.body.forEach(function(row) {
-                            row.forEach(function(cell) {
-                                cell.margin = [0, 5, 0, 5];
-                            });
-                        });
-
-                        // Mengatur warna row ganjil dan genap
-                        doc.styles.tableHeader = { alignment: 'center' };
-                        doc.styles.tableBodyOdd = { fillColor: 'lightgrey' };
-                        doc.styles.tableBodyEven = { fillColor: '#ffffff' };
-                        var rowCount = doc.content[1].table.body.length;
-                        for (var i = 1; i < rowCount; i++) {
-                            doc.content[1].table.body[i].forEach(function(cell) {
-                                cell.fillColor = (i % 2 === 0) ? 'lightgrey' : '#ffffff';
-                            });
-                        }
-
                         doc.content.splice(0, 0, {
                             columns: [
                                 {   
-                                    width: '15%',
-                                    image: logoBase64,
-                                    fit: [100, 100],
-                                    margin: [0, 0, 0, 0] // margins(ltrb)
-                                },
-                                {   
-                                    width: '*',
                                     stack: [
-                                        { text: '\n', fontSize: 20, bold: true, alignment: 'center' },
-                                        { text: 'PEMERINTAH KABUPATEN BANYUMAS', fontSize: 14, bold: true, alignment: 'center' },
-                                        { text: 'DINAS ARSIP DAN PERPUSTAKAAN DAERAH', fontSize: 16, bold: true, alignment: 'center' },
-                                        { text: 'Jalan Jenderal Gatot Subroto Nomor.85, Purwokerto, Banyumas, Kode Pos 53116', fontSize: 10, alignment: 'center' },
-                                        { text: 'Telepon (0281) 636115, Faksimile (0281) 636225', fontSize: 10, alignment: 'center' },
-                                        { text: 'Website : www.dinarpus.banyumaskab.go.id, E-mail : arpusdabanyumas@gmail.com', fontSize: 10, alignment: 'center', color: 'blue' }
+                                        { text: 'DAFTAR USER', fontSize: 14, bold: true, alignment: 'center' },
                                     ],
-                                    margin: [0, 0, 20, 5] // Margin bawah setelah kop
+                                    margin: [0, 0, 0, 10]
                                 }
                             ],
-                            columnGap: 5 // Jarak antara logo dan teks
                         });
-                        // Garis bawah pertama
-                        doc.content.splice(1, 0, {
-                            canvas: [{
-                                type: 'line',
-                                x1: 0,
-                                y1: 0,
-                                x2: 595 - 80, // Mengatur panjang garis agar mencapai tepi kertas potrait
-                                y2: 0,
-                                lineWidth: 1.5 // Tebal garis pertama
-                            }]
-                        });
-
-                        // Garis bawah kedua
-                        doc.content.splice(2, 0, {
-                            canvas: [{
-                                type: 'line',
-                                x1: 0,
-                                y1: 2, // Jarak antara garis pertama dan kedua
-                                x2: 595 - 80, // Mengatur panjang garis agar mencapai tepi kertas lanskap
-                                y2: 2,
-                                lineWidth: 0.75 // Tebal garis kedua lebih tipis
-                            }],
-                            margin: [0, 0, 0, 12] // Margin bawah untuk memberi ruang sebelum tabel dimulai
-                        });
-
-                        //menghapus judul "Data Arsip" dari pdf
-                        doc.content.splice(3, 1);
+                        
+                        doc.content.splice(1, 1);
                     }
                 },
                 {
                     extend: 'colvis',
                     text: 'Kolom',
-                    className: 'btn btn-secondary',
+                    className: 'btn btn-secondary btn-sm',
                     titleAttr: 'Toggle column visibility'
                 }
             ],
@@ -229,7 +190,7 @@ $(document).ready(function() {
                 {   
                     // Custom Copy button ft. SweetAlert2
                     text: 'Salin',
-                    className: 'btn btn-secondary',
+                    className: 'btn btn-secondary btn-sm',
                     action: function (e, dt, button, config) {
                         var data = dt.buttons.exportData({
                             columns: config.exportOptions.columns
@@ -262,27 +223,39 @@ $(document).ready(function() {
                 {
                     extend: 'csvHtml5',
                     text: 'CSV',
-                    className: 'btn btn-info',
+                    className: 'btn btn-info btn-sm',
                     filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        customizeData: function(data) {
+                            // Update numbering for export
+                            data.body.forEach(function(row, index) {
+                                row[0] = index + 1; // Assuming the first column is for numbering
+                            });
+                        }
                     }
                 },
                 {
                     extend: 'excelHtml5',
                     text: 'Excel',
-                    className: 'btn btn-success',
+                    className: 'btn btn-success btn-sm',
                     filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        customizeData: function(data) {
+                            // Update numbering for export
+                            data.body.forEach(function(row, index) {
+                                row[0] = index + 1; // Assuming the first column is for numbering
+                            });
+                        }
                     }
                 },
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
-                    className: 'btn btn-danger',
+                    className: 'btn btn-danger btn-sm',
                     titleAttr: 'Export to PDF',
                     orientation: 'portrait',
                     filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
@@ -292,11 +265,14 @@ $(document).ready(function() {
                         columns: ':visible:not(:last-child)',
                     },
                     customize: function(doc) {
+                        var rowCount = doc.content[1].table.body.length;
+                        for (var i = 1; i < rowCount; i++) {
+                            doc.content[1].table.body[i][0].text = i; // Assuming the first column is for numbering
+                        }
+
                         doc.defaultStyle.fontSize = 10;
                         doc.styles.tableHeader.fontSize = 12;
                         var tableBody = doc.content[1].table.body;
-                        var rowCount = tableBody.length;
-                        var columnCount = tableBody[0].length;
                         doc.content[1].margin = [0, 0, 0, 0];
                         doc.content[1].table.widths = ['10%', '90%'];
                         tableBody.forEach(function(row) {
@@ -313,84 +289,28 @@ $(document).ready(function() {
                             header.fillColor = 'lightblue';
                         });
 
-                        //mengatur teks pada sel agar berada di tengah secara vertikal
-                        doc.content[1].table.body.forEach(function(row) {
-                            row.forEach(function(cell) {
-                                cell.margin = [0, 5, 0, 5];
-                            }
-                        )});
-
                         //add vertical and horizontal line between each columns and rows
                         doc.content[1].layout = 'lightHorizontalLines';
                         doc.content[1].layout = 'lightVerticalLines';
 
-                        // Mengatur warna row ganjil dan genap
-                        doc.styles.tableHeader = { alignment: 'center' };
-                        doc.styles.tableBodyOdd = { fillColor: 'lightgrey' };
-                        doc.styles.tableBodyEven = { fillColor: '#ffffff' };
-                        var rowCount = doc.content[1].table.body.length;
-                        for (var i = 1; i < rowCount; i++) {
-                            doc.content[1].table.body[i].forEach(function(cell) {
-                                cell.fillColor = (i % 2 === 0) ? 'lightgrey' : '#ffffff';
-                            });
-                        }
-
                         doc.content.splice(0, 0, {
                             columns: [
                                 {   
-                                    width: '15%',
-                                    image: logoBase64,
-                                    fit: [100, 100],
-                                    margin: [0, 0, 0, 0] // margins(ltrb)
-                                },
-                                {   
-                                    width: '*',
                                     stack: [
-                                        { text: '\n', fontSize: 20, bold: true, alignment: 'center' },
-                                        { text: 'PEMERINTAH KABUPATEN BANYUMAS', fontSize: 14, bold: true, alignment: 'center' },
-                                        { text: 'DINAS ARSIP DAN PERPUSTAKAAN DAERAH', fontSize: 16, bold: true, alignment: 'center' },
-                                        { text: 'Jalan Jenderal Gatot Subroto Nomor.85, Purwokerto, Banyumas, Kode Pos 53116', fontSize: 10, alignment: 'center' },
-                                        { text: 'Telepon (0281) 636115, Faksimile (0281) 636225', fontSize: 10, alignment: 'center' },
-                                        { text: 'Website : www.dinarpus.banyumaskab.go.id, E-mail : arpusdabanyumas@gmail.com', fontSize: 10, alignment: 'center', color: 'blue' }
+                                        { text: 'DAFTAR UNIT KERJA', fontSize: 14, bold: true, alignment: 'center' },
                                     ],
-                                    margin: [0, 0, 20, 5] // Margin bawah setelah kop
+                                    margin: [0, 0, 0, 10]
                                 }
                             ],
-                            columnGap: 5 // Jarak antara logo dan teks
                         });
-                        // Garis bawah pertama
-                        doc.content.splice(1, 0, {
-                            canvas: [{
-                                type: 'line',
-                                x1: 0,
-                                y1: 0,
-                                x2: 595 - 80, // Mengatur panjang garis agar mencapai tepi kertas potrait
-                                y2: 0,
-                                lineWidth: 1.5 // Tebal garis pertama
-                            }]
-                        });
-
-                        // Garis bawah kedua
-                        doc.content.splice(2, 0, {
-                            canvas: [{
-                                type: 'line',
-                                x1: 0,
-                                y1: 2, // Jarak antara garis pertama dan kedua
-                                x2: 595 - 80, // Mengatur panjang garis agar mencapai tepi kertas lanskap
-                                y2: 2,
-                                lineWidth: 0.75 // Tebal garis kedua lebih tipis
-                            }],
-                            margin: [0, 0, 0, 12] // Margin bawah untuk memberi ruang sebelum tabel dimulai
-                        });
-
-                        //menghapus judul "Data Instansi" dari pdf
-                        doc.content.splice(3, 1);
+                        
+                        doc.content.splice(1, 1);
                     }
                 },
                 {
                     extend: 'colvis',
                     text: 'Kolom',
-                    className: 'btn btn-secondary',
+                    className: 'btn btn-secondary btn-sm',
                     titleAttr: 'Toggle column visibility'
                 }
             ],
@@ -435,14 +355,14 @@ $(document).ready(function() {
     $('#dataarsip').DataTable(
         {
             dom:
-                "<'row' <'col-md-6'B> <'col-md-6' <'row' <'col-12'f> <'col-12 mb-3 d-flex justify-content-end' <'column-filter'> > > > >" +
+                "<'row'<'col mb-2'f>> <'row d-flex justify-content-between mb-2'<'col-md-6'B><'col-md-4' <'column-filter'>>>"+
                 "<'row'<'col-12 mb-3'tr>>" +                                        // Table
                 "<'row'<'col-md-6 mb-3'<'d-flex justify-content-start'l>><'col-md-6 mb-3'<'d-flex justify-content-end'p>>", // Bottom left: Page length | Bottom right: Pagination
             buttons: [
                 {   
                     // Custom Copy button ft. SweetAlert2
                     text: 'Salin',
-                    className: 'btn btn-secondary',
+                    className: 'btn btn-secondary btn-sm',
                     action: function (e, dt, button, config) {
                         var data = dt.buttons.exportData({
                             columns: config.exportOptions.columns
@@ -499,21 +419,33 @@ $(document).ready(function() {
                 {
                     extend: 'csvHtml5',
                     text: 'CSV',
-                    className: 'btn btn-info',
+                    className: 'btn btn-info btn-sm',
                     filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        customizeData: function(data) {
+                            // Update numbering for export
+                            data.body.forEach(function(row, index) {
+                                row[0] = index + 1; // Assuming the first column is for numbering
+                            });
+                        }
                     }
                 },
                 {
                     extend: 'excelHtml5',
                     text: 'Excel',
-                    className: 'btn btn-success',
+                    className: 'btn btn-success btn-sm',
                     filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
                     title: '',
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
+                        customizeData: function(data) {
+                            // Update numbering for export
+                            data.body.forEach(function(row, index) {
+                                row[0] = index + 1; // Assuming the first column is for numbering
+                            });
+                        }
                     },
                     customize: function (xlsx) {
                         var sheet = xlsx.xl.worksheets['sheet1.xml'];
@@ -671,7 +603,7 @@ $(document).ready(function() {
                 {
                     extend: 'pdfHtml5',
                     text: 'PDF',
-                    className: 'btn btn-danger',
+                    className: 'btn btn-danger btn-sm',
                     filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
                     orientation: 'landscape',
@@ -680,6 +612,11 @@ $(document).ready(function() {
                         columns: ':visible:not(:last-child)',
                     },
                     customize: function(doc) {
+                        var rowCount = doc.content[1].table.body.length;
+                        for (var i = 1; i < rowCount; i++) {
+                            doc.content[1].table.body[i][0].text = i; // Assuming the first column is for numbering
+                        }
+                        
                         doc.defaultStyle.fontSize = 10;
                         doc.styles.tableHeader.fontSize = 12;
                         doc.content[1].table.widths = auto;
@@ -744,7 +681,7 @@ $(document).ready(function() {
                 {
                     extend: 'colvis',
                     text: 'Kolom',
-                    className: 'btn btn-secondary',
+                    className: 'btn btn-secondary btn-sm',
                     titleAttr: 'Toggle column visibility'
                 }
             ],

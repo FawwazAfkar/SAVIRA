@@ -2,14 +2,14 @@
 
 
 @section('content')
-<div class="container bg-white p-4 rounded">
+<div class="container bg-white p-4 shadow-sm rounded border border-light-subtle">
     <div>
         <div class="row justify-content-center">
-            <div class="col-md-12 m-2 text-center">
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-xl font-semibold leading-tight">{{ __('DAFTAR USER') }}</h2>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputUser">
-                        <i class='bx bxs-folder-plus'></i>
+            <div class="col-md-12 m-2">
+                <div class="d-flex justify-content-between text-center">
+                    <h2 class="text-xl text-start me-2 font-semibold leading-tight">{{ __('DAFTAR USER') }}</h2>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#inputUser">
+                        <i class='bx bx-user-plus'></i>
                         <span>Tambah User</span>
                     </button>
                 </div>
@@ -39,7 +39,7 @@
                         <th>Nama</th>
                         <th>E-Mail</th>
                         <th>Role</th>
-                        <th>Unit Kerja</th>
+                        <th class="instansi">Unit Kerja</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -65,6 +65,16 @@
                         <x-user.delete :user="$user"/>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th>Nama</th>
+                        <th>E-Mail</th>
+                        <th>Role</th>
+                        <th class="instansi">Unit Kerja</th>
+                        <th>Aksi</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

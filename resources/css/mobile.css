@@ -1,0 +1,163 @@
+/* Mobile layout adjustments */
+@media (max-width: 768px) {
+
+    .text-xl me-2 {
+      font-size: 1rem;
+    }
+    .text-lg {
+      font-size: 0.9rem;
+    }
+    .text-md {
+      font-size: 0.8rem;
+    }
+    .text-sm {
+      font-size: 0.7rem;
+    }
+    .text-xs {
+      font-size: 0.6rem;
+    }
+    .text-xxs {
+      font-size: 0.5rem;
+    }
+    .text-xxxs {
+      font-size: 0.4rem;
+    }
+    .fs-1 {
+      font-size: 1rem;
+    }
+    .fs-2 {
+      font-size: 0.9rem;
+    }
+    .fs-3 {
+      font-size: 0.8rem;
+    }
+    .fs-4 {
+      font-size: 0.7rem;
+    }
+    .fs-5 {
+      font-size: 0.6rem;
+    }
+    .fs-6 {
+      font-size: 0.5rem;
+    }
+    .fs-7 {
+      font-size: 0.4rem;
+    }
+    .btn-sm {
+      font-size: 0.7rem;
+    }
+    .btn-xs {
+      font-size: 0.6rem;
+    }
+    .btn-xxs {
+      font-size: 0.5rem;
+    }
+    .btn-xxxs {
+      font-size: 0.4rem;
+    }
+
+    img.logo-bms{
+        height: 100px;
+    }
+    .instansi{
+        min-width: 150px;
+    }
+    .table{
+        font-size: 0.8rem;
+        max-width: 100%;
+    }
+    .jenis-arsip{
+        min-width: 200px;
+    }
+    .keterangan{
+        min-width: 200px;
+    }
+    .sidebar .logo-details .logo_text .logo_name {
+      font-size: 18px;
+    }
+    
+    .sidebar .logo-details .logo_text .logo_desc {
+      font-size: 8px;
+    }
+    
+    .sidebar .nav-links {
+      padding: 15px 0;
+    }
+    
+    .sidebar .nav-links li {
+      font-size: 14px;
+    }
+    
+    .sidebar .nav-links li i {
+      font-size: 18px;
+    }
+    
+    .sidebar .nav-links li a .link_name {
+      font-size: 16px;
+    }
+    
+    .sidebar .profile-details .profile_name{
+      font-size: 14px;
+    }
+    .sidebar .profile-details .job {
+        font-size: 10px;
+    }
+    
+    .sidebar .profile-details .logoutbtn {
+      height: 50px;
+      width: 50px;
+    }
+    
+    .custom-container {
+      width: 100%;
+      max-width: 100%;
+      padding: 1rem;
+    }
+    
+    .mtable {
+      width: 100%;
+    }
+    
+    .mth, .mtd {
+      font-size: 12px;
+      padding: 0.3rem;
+    }
+    
+    .mth {
+      font-size: 14px;
+    }
+    .user-info-box {
+        background-color: #f8f9fa; 
+        border-style: solid;
+        border-width: 2px;
+        border-color: #e9ecef; 
+        border-radius: 10px; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        user-select: none; 
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        gap: 5px;
+        max-height: 65px;
+    }
+    .user-info-box .user-info-text{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .user-info-box .user-info-text .user-name {
+        font-size: 10px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100px;
+
+
+    }
+    .user-info-box .user-info-text .user-role {
+        font-size: 9px;
+    }
+    .user-icon {
+        font-size: 1.5rem; 
+    }
+  }

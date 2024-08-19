@@ -2,14 +2,14 @@
 
 
 @section('content')
-<div class="container bg-white p-4 rounded">
+<div class="container bg-white p-4 shadow-sm rounded border border-light-subtle">
     <div>
         <div class="row justify-content-center">
-            <div class="col-md-12 m-2 text-center">
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-xl font-semibold leading-tight">{{ __('DAFTAR UNIT KERJA') }}</h2>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputInstansi">
-                        <i class='bx bxs-folder-plus'></i>
+            <div class="col-md-12 m-2 text-start">
+                <div class="d-flex justify-content-between text-center">
+                    <h2 class="text-xl text-start me-2 font-semibold leading-tight">{{ __('DAFTAR UNIT KERJA') }}</h2>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#inputInstansi">
+                        <i class='bx bxs-building'></i>
                         <span>Tambah Unit Kerja</span>
                     </button>
                 </div>

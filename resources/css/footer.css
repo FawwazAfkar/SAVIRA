@@ -1,13 +1,17 @@
 .footer {
     font-family: monospace;
+    color: #495057;
     position: relative;
     bottom: 0;
     left: 0;
-    height: 50px;
+    height: 40px;
     width: 100%;
-    background-color: rgba(42, 59, 92, 0.5);
-    color: #fff;
-    padding-top: 15px;
+    background-color: #f1f3f5;
+    padding-top: 10px;
     padding-left: 78px;
     text-align: end;
+    font-size: 12px;
+    border-top: 2px double #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
 }

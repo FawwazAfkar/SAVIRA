@@ -1,49 +1,60 @@
 /* Other Css */
 @import url(./sidebar.css);
 @import url(./navbar.css);
+@import url(./mobile.css);
 @import url(./footer.css);
 
-/* for layout app css */
+/* for pc layout app css */
 *{
     box-sizing: border-box;
 }
 body {
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
+    background: #f8f9fa;
 }
 body.login-page .main-content {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
-
-body:not(.login-page) .main-content {
-    margin-top: 80px;
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-}
-.poppins {
-    font-family: 'Poppins', sans-serif;
-}
-
-/*untuk tabel daftar arsip*/
-.custom-container {
-    width: 100%;
-    max-width: 95%; 
-    margin: 0 auto; 
-    padding: 0 15px;
-}
-
 body:not(.login-page) .home-section{
   position: relative;
-  top: 100;
-  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
-  background-attachment: fixed;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px);
   left: 78px;
   width: calc(100% - 78px);
 }
 .sidebar.close ~ .home-section{
   left: 78px;
   width: calc(100% - 78px);
+}
+body:not(.login-page) .main-content {
+    margin-top: 80px;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+/*container tabel daftar arsip*/
+.custom-container {
+    width: 100%;
+    max-width: 95%; 
+    margin: 0 auto; 
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body:not(.login-page) .home-section{
+  position: relative;
+  background: #f8f9fa;
+  background-color: #f8f9fa;
+  background-attachment: fixed;
+}
+
+/* boxes pattern */
+.boxes-pattern {
+  background-image: linear-gradient(90deg, #ccc 1px, transparent 1px), linear-gradient(180deg, #ccc 1px, transparent 1px);
+  background-size: 60px 60px; 
+  background-color: #f1f3f5;
 }
 
 /* Faded effect */
@@ -91,29 +102,33 @@ input[type="search"] {
   display: flex;
   align-items: center;
 }
-.modal-table{
-  border-radius: 10px;
 
+/* Custom Modal Table */
+.mtable {
+  width: 95%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
 }
-.modal-table .row .col{
-  border-bottom: #e5e8eb 1px solid;
-  padding-top: 0.2rem;
+.mtr{
+  display: table-row;
+  border-bottom: 1px solid #ddd;
 }
-.modal-table .row .col.mth{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.mth, .mtd {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  display: table-cell;
+}
+.mth {
+  font-weight: bold; 
   background-color: #f2f2f2;
-  font-weight: bold;
-  
 }
-.modal-table .row .col.mtc{
-  display: flex;
-  gap: 1rem;
-  justify-content: start;
-  align-items: center;
-  background-color: #ffffff;
+
+.mtr:hover {
+  background-color: #f2f2f2;
 }
-.modal-table .row.action{
-  border-bottom: none;
-}
+
+
+
+

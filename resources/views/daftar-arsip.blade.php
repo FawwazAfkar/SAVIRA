@@ -2,14 +2,14 @@
 
 
 @section('content')
-<div class="custom-container bg-white p-4 rounded">
+<div class="custom-container">
     <div>
         <div class="row justify-content-center">
-            <div class="col-md-12 m-2 text-center">
-                <div class="d-flex justify-content-between">
-                    <h2 class="text-xl font-semibold leading-tight">{{ __('DAFTAR ARSIP VITAL') }}</h2>
+            <div class="col-md-12 col-sm-12 m-2">
+                <div class="d-flex justify-content-between text-center">
+                    <h2 class="text-xl text-start me-2 font-semibold leading-tight">{{ __('DAFTAR ARSIP VITAL') }}</h2>
                     @can('createArsips')
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputArsip">
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#inputArsip">
                         <i class='bx bxs-folder-plus'></i>
                         <span>Tambah Arsip</span>
                     </button>
@@ -38,7 +38,7 @@
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th>Jenis Arsip</th>
+                        <th class="jenis-arsip">Jenis Arsip</th>
                         <th>Tingkat Perkembangan</th>
                         <th class="text-start">Kurun Waktu</th>
                         <th>Media</th>
@@ -46,8 +46,8 @@
                         <th>Jangka Simpan</th>
                         <th>Metode Perlindungan</th>
                         <th>Lokasi Simpan</th>
-                        <th>Keterangan</th>
-                        @hasrole('SuperAdmin')<th>Unit Kerja</th>@endhasrole
+                        <th class="keterangan">Keterangan</th>
+                        @hasrole('SuperAdmin')<th class="instansi">Unit Kerja</th>@endhasrole
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -80,11 +80,27 @@
                             </td>
                         </tr>
                         <!-- Tempat Naruh Modal/Routes for Aksi -->
-                        <x-arsip.view :arsip="$arsip" :show="false"/>
                         <x-arsip.update :arsip="$arsip"/>
                         <x-arsip.delete :arsip="$arsip"/>
+                        <x-arsip.view :arsip="$arsip" :show="false"/>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th class="jenis-arsip">Jenis Arsip</th>
+                        <th>Tingkat Perkembangan</th>
+                        <th class="text-start">Kurun Waktu</th>
+                        <th>Media</th>
+                        <th id="jumlah">Jumlah</th>
+                        <th>Jangka Simpan</th>
+                        <th>Metode Perlindungan</th>
+                        <th>Lokasi Simpan</th>
+                        <th class="keterangan">Keterangan</th>
+                        @hasrole('SuperAdmin')<th class="instansi">Unit Kerja</th>@endhasrole
+                        <th>Aksi</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

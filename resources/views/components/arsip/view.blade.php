@@ -4,164 +4,167 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-4">Detail Arsip</h1>
+                <h1 class="modal-title fs-4">Informasi Arsip</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-            <div class="row mb-4">
-                <div class="col-md-8 modal-table">
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Instansi</h5>
+            <div class="row g-2 mb-4">
+                <div class="col-md-8 mt-2 ms-2">
+                <h5><b>Detail Pendataan Arsip</b></h5>
+                <div class="mtable">
+                    <div class="mtr">
+                        <div class="mth">
+                            Instansi
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->instansi->nama_instansi }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Unit Pengolah</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->unit_pengolah }}</p>
+                        <div class="mtd">
+                            {{ $arsip->instansi->nama_instansi }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Jenis Arsip</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Unit Pengolah
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->jenis_arsip }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Media Simpan</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->media }}</p>
+                        <div class="mtd">
+                            {{ $arsip->unit_pengolah }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Sarana Temu Kembali</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Jenis Arsip
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->sarana_temu_kembali }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Volume/Jumlah</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->jumlah }}</p>
+                        <div class="mtd">
+                            {{ $arsip->jenis_arsip }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Periode (Kurun Waktu)</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Media Simpan
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->kurun_waktu }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Retensi/Masa Simpan</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->jangka_simpan }}</p>
+                        <div class="mtd">
+                            {{ $arsip->media }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Tingkat Keaslian</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Sarana Temu Kembali
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->tingkat_perkembangan }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Sifat Kerahasiaan</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->sifat_kerahasiaan }}</p>
+                        <div class="mtd">
+                            {{ $arsip->sarana_temu_kembali }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Lokasi Simpan</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Volume/Jumlah
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->lokasi_simpan }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Sarana Simpan</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->sarana_simpan }}</p>
+                        <div class="mtd">
+                            {{ $arsip->jumlah }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Metode Perlindungan</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Periode (Kurun Waktu)
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->metode_perlindungan }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Berita Acara</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->berita_acara }}</p>
+                        <div class="mtd">
+                            {{ $arsip->kurun_waktu }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Keterangan</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Retensi/Masa Simpan
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->keterangan }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Nama Pendata</h5>
-                        </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->nama_pendata }}</p>
+                        <div class="mtd">
+                            {{ $arsip->jangka_simpan }}
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mth">
-                            <h5>Waktu Pendataan</h5>
+                    <div class="mtr">
+                        <div class="mth">
+                            Tingkat Keaslian
                         </div>
-                        <div class="col mtc">
-                            <p>{{ $arsip->waktu_pendataan}}</p>
+                        <div class="mtd">
+                            {{ $arsip->tingkat_perkembangan }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Sifat Kerahasiaan
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->sifat_kerahasiaan }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Lokasi Simpan
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->lokasi_simpan }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Sarana Simpan
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->sarana_simpan }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Metode Perlindungan
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->metode_perlindungan }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Berita Acara
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->berita_acara }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Keterangan
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->keterangan }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Nama Pendata
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->nama_pendata }}
+                        </div>
+                    </div>
+                    <div class="mtr">
+                        <div class="mth">
+                            Waktu Pendataan
+                        </div>
+                        <div class="mtd">
+                            {{ $arsip->waktu_pendataan}}
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                </div>
+                <div class="col m-3">
                     <div class="row">
-                        <h5>Preview Arsip</h5>
+                        <h5><b> Preview Arsip </b></h5>
                         <div id="pdf-viewer-view_{{ $arsip->id }}" class="form-control" style="height: 25rem; overflow:auto"></div>
                     </div>
-                    <div class="row action">
-                        <h5>Aksi</h5>
+                    <div class="row mt-4 ">
+                        <h5><b> Aksi </b></h5>
                         <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.view', $arsip->id) }}" target="_blank">Lihat Arsip</a>
-                        <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}" download>Download</a>
+                        <a class="btn btn-dark btnlink text-center mb-2" href="{{ route('arsip.download', $arsip->id) }}" download>Download Arsip</a>
                         <a class="btn btn-dark btnlink text-center mb-2 download-kartu" href="#" data-id="{{ $arsip->id }}" data-instansi-id="{{ $arsip->instansi_id }}">Download Kartu Pendataan</a>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <div class="footer">
     <div class="container-fluid">
-        <p>©️ SAVIRA 2024</p>
+        <small>©️ SAVIRA {{ date('Y') }}</small>
     </div>
 </div>

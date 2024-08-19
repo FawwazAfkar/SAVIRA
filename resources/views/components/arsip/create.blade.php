@@ -69,17 +69,17 @@
                 <label for="berita_acara" class="form-label ms-1 fs-5">{{ __('Berita Acara') }}</label>
                 <input id="berita_acara" name="berita_acara" type="text" class="form-control" placeholder="">
               </div>
-            </div>
-            <div class="col-md-4">
               <div class="mb-3 col-12">
                 <label for="keterangan" class="form-label ms-1 fs-5">{{ __('Keterangan') }}</label>
                 <textarea id="keterangan" name="keterangan" class="form-control" placeholder="" style="height: 8rem"></textarea>
               </div>
+            </div>
+            <div class="col-md-4">
               <div class="mb-3 col-12">
                 <label for="file" class="form-label ms-1 fs-5">{{ __('Upload File (PDF)') }}</label>
                 <input class="form-control" type="file" id="file" name="file" accept=".pdf" required>
                 <span class="form-text fs-6 ms-1 text-muted">
-                  File yang diupload harus berformat PDF berukuran maksimal 50MB.
+                  File yang diupload harus berformat PDF berukuran kurang dari 50MB.
                 </span>
               </div>
               <div class="mb-3 col-12">
@@ -89,7 +89,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary mr-2" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+            <button type="button" class="btn btn-secondary mr-2" data-bs-dismiss="modal">{{ __('Batal') }}</button>
             <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
           </form>
         </div>

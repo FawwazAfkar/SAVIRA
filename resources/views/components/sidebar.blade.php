@@ -1,5 +1,4 @@
-<div class="sidebar close">
-
+<aside class="sidebar close">
     <div class="logo-details">
       <a href="{{ route('home') }}">
         <div class="logo_icon"><x-nav-logo /></div>
@@ -54,8 +53,7 @@
             <li><a class="link_name" href="{{ route('daftar-arsip') }}">Daftar Arsip</a></li>
           </ul>
       </li>
-
-    <li>
+      <li>
         <div class="profile-details">
           <div class="name-job">
               <div class="profile_name">{{ Auth::user()->name }}</div>
@@ -69,8 +67,8 @@
             </form>
           </div>
         </div>
-  </li>
-</ul>
-</div>
+    </li>
+  </ul>
+</aside>
 
 <div id="overlay" class="overlay"></div>
