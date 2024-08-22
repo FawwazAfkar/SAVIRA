@@ -1,5 +1,4 @@
 import { auto } from '@popperjs/core';
-import { logoBase64 } from './constant.js';
 
 // Data table for User's Table
 $(document).ready(function() {
@@ -19,6 +18,7 @@ $(document).ready(function() {
                     // Custom Copy button ft. SweetAlert2
                     text: 'Salin',
                     className: 'btn btn-secondary btn-sm',
+                    footer : false,
                     action: function (e, dt, button, config) {
                         var data = dt.buttons.exportData({
                             columns: config.exportOptions.columns
@@ -45,7 +45,7 @@ $(document).ready(function() {
                         });
                     },
                     exportOptions: {
-                        columns: ':visible:not(:last-child)'
+                        columns: ':visible:not(:last-child)',
                     }
                 },
                 {
@@ -54,6 +54,7 @@ $(document).ready(function() {
                     className: 'btn btn-info btn-sm',
                     filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                         customizeData: function(data) {
@@ -70,6 +71,7 @@ $(document).ready(function() {
                     className: 'btn btn-success btn-sm',
                     filename: 'SAVIRA_Data_Pengguna_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Pengguna - ' + formattedDate,   // Set the title with date
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                         customizeData: function(data) {
@@ -89,6 +91,7 @@ $(document).ready(function() {
                     filename: 'SAVIRA_Data_User_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data User - ' + formattedDate,   // Set the title with date
                     pageSize: 'A4',
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                     },
@@ -191,6 +194,7 @@ $(document).ready(function() {
                     // Custom Copy button ft. SweetAlert2
                     text: 'Salin',
                     className: 'btn btn-secondary btn-sm',
+                    footer : false,
                     action: function (e, dt, button, config) {
                         var data = dt.buttons.exportData({
                             columns: config.exportOptions.columns
@@ -226,6 +230,7 @@ $(document).ready(function() {
                     className: 'btn btn-info btn-sm',
                     filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                         customizeData: function(data) {
@@ -242,6 +247,7 @@ $(document).ready(function() {
                     className: 'btn btn-success btn-sm',
                     filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                         customizeData: function(data) {
@@ -261,6 +267,7 @@ $(document).ready(function() {
                     filename: 'SAVIRA_Data_Unit_Kerja_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Unit Kerja - ' + formattedDate,   // Set the title with date
                     pageSize: 'A4',
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                     },
@@ -363,6 +370,7 @@ $(document).ready(function() {
                     // Custom Copy button ft. SweetAlert2
                     text: 'Salin',
                     className: 'btn btn-secondary btn-sm',
+                    footer : false,
                     action: function (e, dt, button, config) {
                         var data = dt.buttons.exportData({
                             columns: config.exportOptions.columns
@@ -422,6 +430,7 @@ $(document).ready(function() {
                     className: 'btn btn-info btn-sm',
                     filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
                     title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                         customizeData: function(data) {
@@ -438,6 +447,7 @@ $(document).ready(function() {
                     className: 'btn btn-success btn-sm',
                     filename: 'SAVIRA_Data_Arsip_Vital_' + formattedDate,  // Set the filename with date
                     title: '',
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                         customizeData: function(data) {
@@ -555,7 +565,7 @@ $(document).ready(function() {
                             '',
                             '',
                             '',
-                            'Nama',
+                            '(Nama)',
                             'NIP'
                         ];
     
@@ -608,6 +618,7 @@ $(document).ready(function() {
                     title: 'SAVIRA Data Arsip Vital - ' + formattedDate,   // Set the title with date
                     orientation: 'landscape',
                     pageSize: 'A4',
+                    footer : false,
                     exportOptions: {
                         columns: ':visible:not(:last-child)',
                     },
@@ -640,17 +651,6 @@ $(document).ready(function() {
                             });
                         });
 
-                        // Mengatur warna row ganjil dan genap
-                        doc.styles.tableHeader = { alignment: 'center' };
-                        doc.styles.tableBodyOdd = { fillColor: 'lightgrey' };
-                        doc.styles.tableBodyEven = { fillColor: '#ffffff' };
-                        var rowCount = doc.content[1].table.body.length;
-                        for (var i = 1; i < rowCount; i++) {
-                            doc.content[1].table.body[i].forEach(function(cell) {
-                                cell.fillColor = (i % 2 === 0) ? 'lightgrey' : '#ffffff';
-                            });
-                        }
-
                         // Base64-encoded logo image
                         doc.content.splice(0, 0, {
                             columns: [
@@ -658,7 +658,7 @@ $(document).ready(function() {
                                     width: '*',
                                     stack: [
                                         { text: 'DAFTAR ARSIP VITAL', fontSize: 16, bold: true, alignment: 'center' },
-                                        { text: instansi.toUpperCase(), fontSize: 18, bold: true, alignment: 'center' },
+                                        { text: instansi.toUpperCase(), fontSize: 16, bold: true, alignment: 'center' },
                                     ],
                                 }
                             ],

@@ -10,7 +10,7 @@
                         <img class="logo-bms" src="{{ asset('assets/images/banyumaslogo.svg') }}" alt="banyumaslogo">
                     </div>
                     <h1 class="text-center fw-bold">SAVIRA</h1>
-                    <p class="text-center fs-4">SAVIRA merupakan Sistem Penyimpanan Arsip Vital Regional Banyumas</p>
+                    <p class="text-center fs-4">SAVIRA merupakan Sistem Penyimpanan Arsip Vital Terintegrasi</p>
                     <p class="text-center fs-5 fw-semibold">Selamat Datang, {{ Auth::user()->name }}</p>
                     <p class="text-center">Unit Kerja : {{ Auth::user()->instansi->nama_instansi }}</p>
                 </div>
