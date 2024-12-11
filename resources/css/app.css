@@ -3,10 +3,12 @@
 @import url(./navbar.css);
 @import url(./mobile.css);
 @import url(./footer.css);
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
 
 /* for pc layout app css */
 *{
     box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
 }
 body {
     background: #f8f9fa;

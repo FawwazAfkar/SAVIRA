@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArsipController;
 use App\Http\Controllers\InstansiController;
-use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('auth/login');
@@ -47,3 +48,10 @@ Route::middleware(['auth', 'role:SuperAdmin'])->group(function() {
         Route::post('/delete/{id}', [InstansiController::class, 'destroy'])->name('instansi.destroy');
     });
 });
+
+//route for vite
+Route::get('/vite/{path?}', function ($path = null) {
+    $viteServer = 'http://localhost:5173'; // URL default Vite
+    $response = Http::get("$viteServer/$path");
+    return response($response->body(), $response->status(), $response->headers());
+})->where('path', '.*');
